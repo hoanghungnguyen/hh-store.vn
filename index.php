@@ -5,8 +5,17 @@ require "db/connect.php";
 include("./include/header.php");
 include("./include/menu.php");
 include("./include/slider.php");
-if (isset($_GET['quanly']) == 'danhmuc') {
+
+if (isset($_GET['quanly'])) {
+	$tam = $_GET['quanly'];
+} else {
+	$tam = '';
+}
+
+if ($tam == 'danhmuc') {
 	include("./include/danhmuc.php");
+} else if ($tam == 'chitietsp') {
+	include("./include/chitietsp.php");
 } else {
 	include("./include/home.php");
 }
@@ -99,7 +108,24 @@ include("./include/footer.php");
 	}
 </script>
 <!-- //password-script -->
+<!-- imagezoom -->
+<script src="js/imagezoom.js"></script>
+<!-- //imagezoom -->
 
+<!-- flexslider -->
+<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+
+<script src="js/jquery.flexslider.js"></script>
+<script>
+	// Can also be used with $(document).ready()
+	$(window).load(function() {
+		$('.flexslider').flexslider({
+			animation: "slide",
+			controlNav: "thumbnails"
+		});
+	});
+</script>
+<!-- //FlexSlider-->
 <!-- scroll seller -->
 <script src="js/scroll.js"></script>
 <!-- //scroll seller -->

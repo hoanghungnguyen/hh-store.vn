@@ -30,14 +30,15 @@
                                         <img src="images/<?php echo $row_sanpham['sanpham_image'] ?>" alt="">
                                         <div class="men-cart-pro">
                                             <div class="inner-men-cart-pro">
-                                                <a href="chitietsp.php?id=<?php echo $row_sanpham['sanpham_id']; ?>"
+                                                <a href="?quanly=chitietsp&id=<?php echo $row_sanpham['sanpham_id']; ?>"
                                                     class="link-product-add-cart">Xem sản phẩm</a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="item-info-product text-center border-top mt-4">
                                         <h4 class="pt-1">
-                                            <a href="single.html"> <?php echo $row_sanpham['sanpham_name'] ?></a>
+                                            <a href="?quanly=chitietsp&id=<?php echo $row_sanpham['sanpham_id']; ?>">
+                                                <?php echo $row_sanpham['sanpham_name'] ?></a>
                                         </h4>
                                         <div class="info-product-price my-2">
                                             <span
