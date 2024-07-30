@@ -6,16 +6,15 @@
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8" />
-    <meta name="keywords"
-        content="Electro Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <meta name="keywords" content="Electro Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script>
-    addEventListener("load", function() {
-        setTimeout(hideURLbar, 0);
-    }, false);
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-    function hideURLbar() {
-        window.scrollTo(0, 1);
-    }
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
     </script>
     <!-- //Meta tag Keywords -->
 
@@ -33,12 +32,8 @@
     <!-- //Custom-Files -->
 
     <!-- web fonts -->
-    <link
-        href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext"
-        rel="stylesheet">
-    <link
-        href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
-        rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
     <!-- //web fonts -->
 
 </head>
@@ -175,13 +170,11 @@
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Password</label>
-                            <input type="password" class="form-control" placeholder=" " name="Password" id="password1"
-                                required="">
+                            <input type="password" class="form-control" placeholder=" " name="Password" id="password1" required="">
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Confirm Password</label>
-                            <input type="password" class="form-control" placeholder=" " name="Confirm Password"
-                                id="password2" required="">
+                            <input type="password" class="form-control" placeholder=" " name="Confirm Password" id="password2" required="">
                         </div>
                         <div class="right-w3l">
                             <input type="submit" class="form-control" value="Register">
@@ -208,8 +201,8 @@
                 <!-- logo -->
                 <div class="col-md-3 logo_agile">
                     <h1 class="text-center">
-                        <a href="index.html" class="font-weight-bold font-italic">
-                            <img src="images/logo2.png" alt=" " class="img-fluid">Electro Store
+                        <a href="?" class="font-weight-bold font-italic">
+                            <img src="images/logoshop2-remo.png" alt=" " class="img-fluid">
                         </a>
                     </h1>
                 </div>
@@ -220,8 +213,7 @@
                         <!-- search -->
                         <div class="col-10 agileits_search">
                             <form class="form-inline" action="#" method="post">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Search"
-                                    aria-label="Search" required>
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required>
                                 <button class="btn my-2 my-sm-0" type="submit">Search</button>
                             </form>
                         </div>
