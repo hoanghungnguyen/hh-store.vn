@@ -1,36 +1,59 @@
+<?php
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+} else {
+    $id = '';
+}
+$sql_cate = mysqli_query($con, "SELECT * FROM tbl_category, tbl_sanpham WHERE tbl_category.category_id = tbl_sanpham.category_id AND
+ tbl_sanpham.category_id = '$id' ORDER BY tbl_sanpham.sanpham_id ASC");
+
+$sql_category = mysqli_query($con, "SELECT * FROM tbl_category, tbl_sanpham WHERE tbl_category.category_id = tbl_sanpham.category_id AND
+ tbl_sanpham.category_id = '$id' ORDER BY tbl_sanpham.sanpham_id ASC");
+
+$row_title = mysqli_fetch_array($sql_category);
+$title = $row_title['category_name'];
+
+?>
+
 <div class="ads-grid py-sm-5 py-4">
     <div class="container py-xl-4 py-lg-2">
         <!-- tittle heading -->
         <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
-            Danh mục
+            <?php echo $title ?>
         </h3>
         <!-- //tittle heading -->
         <div class="row">
             <!-- product left -->
+
             <div class="agileinfo-ads-display col-lg-9">
                 <div class="wrapper">
                     <!-- first section -->
                     <div class="product-sec1 px-sm-4 px-3 py-sm-5 py-3 mb-4">
                         <div class="row">
-                            <div class="col-md-4 product-men">
+                            <?php while ($row_sanpham = mysqli_fetch_array($sql_cate)) { ?>
+                            <div class="col-md-4 product-men mt-5">
                                 <div class="men-pro-item simpleCart_shelfItem">
                                     <div class="men-thumb-item text-center">
-                                        <img src="images/m1.jpg" alt="" />
+                                        <img src="images/<?php echo $row_sanpham['sanpham_image'] ?>" alt="">
                                         <div class="men-cart-pro">
                                             <div class="inner-men-cart-pro">
-                                                <a href="single.html" class="link-product-add-cart">Quick View</a>
+                                                <a href="?quanly=chitietsp&id=<?php echo $row_sanpham['sanpham_id']; ?>"
+                                                    class="link-product-add-cart">Xem sản phẩm</a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="item-info-product text-center border-top mt-4">
                                         <h4 class="pt-1">
-                                            <a href="single.html">Samsung Galaxy J7</a>
+                                            <a href="?quanly=chitietsp&id=<?php echo $row_sanpham['sanpham_id']; ?>">
+                                                <?php echo $row_sanpham['sanpham_name'] ?></a>
                                         </h4>
                                         <div class="info-product-price my-2">
-                                            <span class="item_price">$200.00</span>
-                                            <del>$280.00</del>
+                                            <span
+                                                class="item_price"><?php echo number_format($row_sanpham['sanpham_giakhuyenmai']) . 'vnđ'  ?></span>
+                                            <del><?php echo number_format($row_sanpham['sanpham_gia']) . 'vnđ'  ?></del>
                                         </div>
-                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                        <div
+                                            class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                             <form action="#" method="post">
                                                 <fieldset>
                                                     <input type="hidden" name="cmd" value="_cart" />
@@ -42,446 +65,20 @@
                                                     <input type="hidden" name="currency_code" value="USD" />
                                                     <input type="hidden" name="return" value=" " />
                                                     <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
+                                                    <input type="submit" name="submit" value="Thêm giỏ hàng"
+                                                        class="button btn" />
                                                 </fieldset>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 product-men mt-md-0 mt-5">
-                                <div class="men-pro-item simpleCart_shelfItem">
-                                    <div class="men-thumb-item text-center">
-                                        <img src="images/m2.jpg" alt="" />
-                                        <div class="men-cart-pro">
-                                            <div class="inner-men-cart-pro">
-                                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                                            </div>
-                                        </div>
-                                        <span class="product-new-top">New</span>
-                                    </div>
-                                    <div class="item-info-product text-center border-top mt-4">
-                                        <h4 class="pt-1">
-                                            <a href="single.html">OPPO A37f</a>
-                                        </h4>
-                                        <div class="info-product-price my-2">
-                                            <span class="item_price">$230.00</span>
-                                            <del>$250.00</del>
-                                        </div>
-                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                            <form action="#" method="post">
-                                                <fieldset>
-                                                    <input type="hidden" name="cmd" value="_cart" />
-                                                    <input type="hidden" name="add" value="1" />
-                                                    <input type="hidden" name="business" value=" " />
-                                                    <input type="hidden" name="item_name" value="OPPO A37f" />
-                                                    <input type="hidden" name="amount" value="230.00" />
-                                                    <input type="hidden" name="discount_amount" value="1.00" />
-                                                    <input type="hidden" name="currency_code" value="USD" />
-                                                    <input type="hidden" name="return" value=" " />
-                                                    <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 product-men mt-md-0 mt-5">
-                                <div class="men-pro-item simpleCart_shelfItem">
-                                    <div class="men-thumb-item text-center">
-                                        <img src="images/m3.jpg" alt="" />
-                                        <div class="men-cart-pro">
-                                            <div class="inner-men-cart-pro">
-                                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                                            </div>
-                                        </div>
-                                        <span class="product-new-top">New</span>
-                                    </div>
-                                    <div class="item-info-product text-center border-top mt-4">
-                                        <h4 class="pt-1">
-                                            <a href="single.html">Apple iPhone X</a>
-                                        </h4>
-                                        <div class="info-product-price my-2">
-                                            <span class="item_price">$280.00</span>
-                                            <del>$300.00</del>
-                                        </div>
-                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                            <form action="#" method="post">
-                                                <fieldset>
-                                                    <input type="hidden" name="cmd" value="_cart" />
-                                                    <input type="hidden" name="add" value="1" />
-                                                    <input type="hidden" name="business" value=" " />
-                                                    <input type="hidden" name="item_name" value="Apple iPhone X" />
-                                                    <input type="hidden" name="amount" value="280.00" />
-                                                    <input type="hidden" name="discount_amount" value="1.00" />
-                                                    <input type="hidden" name="currency_code" value="USD" />
-                                                    <input type="hidden" name="return" value=" " />
-                                                    <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php } ?>
+
                         </div>
                     </div>
                     <!-- //first section -->
-                    <!-- second section -->
-                    <div class="product-sec1 px-sm-4 px-3 py-sm-5 py-3 mb-4">
-                        <div class="row">
-                            <div class="col-md-4 product-men">
-                                <div class="men-pro-item simpleCart_shelfItem">
-                                    <div class="men-thumb-item text-center">
-                                        <img src="images/mk1.jpg" alt="" />
-                                        <div class="men-cart-pro">
-                                            <div class="inner-men-cart-pro">
-                                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item-info-product text-center border-top mt-4">
-                                        <h4 class="pt-1">
-                                            <a href="single.html">Infinix Hot S3</a>
-                                        </h4>
-                                        <div class="info-product-price my-2">
-                                            <span class="item_price">$300.00</span>
-                                            <del>$320.00</del>
-                                        </div>
-                                        <span class="product-new-top">New</span>
-                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                            <form action="#" method="post">
-                                                <fieldset>
-                                                    <input type="hidden" name="cmd" value="_cart" />
-                                                    <input type="hidden" name="add" value="1" />
-                                                    <input type="hidden" name="business" value=" " />
-                                                    <input type="hidden" name="item_name" value="Infinix Hot S3" />
-                                                    <input type="hidden" name="amount" value="300.00" />
-                                                    <input type="hidden" name="discount_amount" value="1.00" />
-                                                    <input type="hidden" name="currency_code" value="USD" />
-                                                    <input type="hidden" name="return" value=" " />
-                                                    <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 product-men mt-md-0 mt-5">
-                                <div class="men-pro-item simpleCart_shelfItem">
-                                    <div class="men-thumb-item text-center">
-                                        <img src="images/mk2.jpg" alt="" />
-                                        <div class="men-cart-pro">
-                                            <div class="inner-men-cart-pro">
-                                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item-info-product text-center border-top mt-4">
-                                        <h4 class="pt-1">
-                                            <a href="single.html">Moto X4 (6 GB)</a>
-                                        </h4>
-                                        <div class="info-product-price my-2">
-                                            <span class="item_price">$233.00</span>
-                                            <del>$240.00</del>
-                                        </div>
-                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                            <form action="#" method="post">
-                                                <fieldset>
-                                                    <input type="hidden" name="cmd" value="_cart" />
-                                                    <input type="hidden" name="add" value="1" />
-                                                    <input type="hidden" name="business" value=" " />
-                                                    <input type="hidden" name="item_name" value="Moto X4 (6 GB)" />
-                                                    <input type="hidden" name="amount" value="233.00" />
-                                                    <input type="hidden" name="discount_amount" value="1.00" />
-                                                    <input type="hidden" name="currency_code" value="USD" />
-                                                    <input type="hidden" name="return" value=" " />
-                                                    <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 product-men mt-md-0 mt-5">
-                                <div class="men-pro-item simpleCart_shelfItem">
-                                    <div class="men-thumb-item text-center">
-                                        <img src="images/mk3.jpg" alt="" />
-                                        <div class="men-cart-pro">
-                                            <div class="inner-men-cart-pro">
-                                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item-info-product text-center border-top mt-4">
-                                        <h4 class="pt-1">
-                                            <a href="single.html">iVooMi i Series</a>
-                                        </h4>
-                                        <div class="info-product-price my-2">
-                                            <span class="item_price">$249.00</span>
-                                            <del>$260.00</del>
-                                        </div>
-                                        <span class="product-new-top">New</span>
-                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                            <form action="#" method="post">
-                                                <fieldset>
-                                                    <input type="hidden" name="cmd" value="_cart" />
-                                                    <input type="hidden" name="add" value="1" />
-                                                    <input type="hidden" name="business" value=" " />
-                                                    <input type="hidden" name="item_name" value="iVooMi i Series" />
-                                                    <input type="hidden" name="amount" value="249.00" />
-                                                    <input type="hidden" name="discount_amount" value="1.00" />
-                                                    <input type="hidden" name="currency_code" value="USD" />
-                                                    <input type="hidden" name="return" value=" " />
-                                                    <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- //second section -->
-                    <!-- 3rd section -->
-                    <div class="product-sec1 px-sm-4 px-3 py-sm-5 py-3 mt-4">
-                        <div class="row">
-                            <div class="col-md-4 product-men">
-                                <div class="men-pro-item simpleCart_shelfItem">
-                                    <div class="men-thumb-item text-center">
-                                        <img src="images/mk4.jpg" alt="" class="img-fluid" />
-                                        <div class="men-cart-pro">
-                                            <div class="inner-men-cart-pro">
-                                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item-info-product text-center border-top mt-4">
-                                        <h4 class="pt-1">
-                                            <a href="single.html">Dell Vostro Laptop</a>
-                                        </h4>
-                                        <div class="info-product-price my-2">
-                                            <span class="item_price">$252.00</span>
-                                            <del>$260.00</del>
-                                        </div>
-                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                            <form action="#" method="post">
-                                                <fieldset>
-                                                    <input type="hidden" name="cmd" value="_cart" />
-                                                    <input type="hidden" name="add" value="1" />
-                                                    <input type="hidden" name="business" value=" " />
-                                                    <input type="hidden" name="item_name" value="Dell Vostro Laptop" />
-                                                    <input type="hidden" name="amount" value="252.00" />
-                                                    <input type="hidden" name="discount_amount" value="1.00" />
-                                                    <input type="hidden" name="currency_code" value="USD" />
-                                                    <input type="hidden" name="return" value=" " />
-                                                    <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 product-men mt-md-0 mt-5 mt-5">
-                                <div class="men-pro-item simpleCart_shelfItem">
-                                    <div class="men-thumb-item text-center">
-                                        <img src="images/mk5.jpg" alt="" class="img-fluid" />
-                                        <div class="men-cart-pro">
-                                            <div class="inner-men-cart-pro">
-                                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item-info-product text-center border-top mt-4">
-                                        <h4 class="pt-1">
-                                            <a href="single.html">Acer Laptop</a>
-                                        </h4>
-                                        <div class="info-product-price my-2">
-                                            <span class="item_price">$240.00</span>
-                                            <del>$260.00</del>
-                                        </div>
-                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                            <form action="#" method="post">
-                                                <fieldset>
-                                                    <input type="hidden" name="cmd" value="_cart" />
-                                                    <input type="hidden" name="add" value="1" />
-                                                    <input type="hidden" name="business" value=" " />
-                                                    <input type="hidden" name="item_name" value="Acer Laptop" />
-                                                    <input type="hidden" name="amount" value="240.00" />
-                                                    <input type="hidden" name="discount_amount" value="1.00" />
-                                                    <input type="hidden" name="currency_code" value="USD" />
-                                                    <input type="hidden" name="return" value=" " />
-                                                    <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 product-men mt-md-0 mt-5 mt-5">
-                                <div class="men-pro-item simpleCart_shelfItem">
-                                    <div class="men-thumb-item text-center">
-                                        <img src="images/mk6.jpg" alt="" class="img-fluid" />
-                                        <div class="men-cart-pro">
-                                            <div class="inner-men-cart-pro">
-                                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item-info-product text-center border-top mt-4">
-                                        <h4 class="pt-1">
-                                            <a href="single.html">Lenovo </a>
-                                        </h4>
-                                        <div class="info-product-price my-2">
-                                            <span class="item_price">$300.00</span>
-                                            <del>$320.00</del>
-                                        </div>
-                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                            <form action="#" method="post">
-                                                <fieldset>
-                                                    <input type="hidden" name="cmd" value="_cart" />
-                                                    <input type="hidden" name="add" value="1" />
-                                                    <input type="hidden" name="business" value=" " />
-                                                    <input type="hidden" name="item_name" value="Alcatel Tablet" />
-                                                    <input type="hidden" name="amount" value="300.00" />
-                                                    <input type="hidden" name="discount_amount" value="1.00" />
-                                                    <input type="hidden" name="currency_code" value="USD" />
-                                                    <input type="hidden" name="return" value=" " />
-                                                    <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- //3rd section -->
-                    <!-- fourth section -->
-                    <div class="product-sec1 px-sm-4 px-3 py-sm-5 py-3 mt-4">
-                        <div class="row">
-                            <div class="col-md-4 product-men">
-                                <div class="men-pro-item simpleCart_shelfItem">
-                                    <div class="men-thumb-item text-center">
-                                        <img src="images/mk7.jpg" alt="" class="img-fluid" />
-                                        <div class="men-cart-pro">
-                                            <div class="inner-men-cart-pro">
-                                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <span class="product-new-top">New</span>
-                                    <div class="item-info-product text-center border-top mt-4">
-                                        <h4 class="pt-1">
-                                            <a href="single.html">Intex Power Bank</a>
-                                        </h4>
-                                        <div class="info-product-price my-2">
-                                            <span class="item_price">$100.00</span>
-                                            <del>$200.00</del>
-                                        </div>
-                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                            <form action="#" method="post">
-                                                <fieldset>
-                                                    <input type="hidden" name="cmd" value="_cart" />
-                                                    <input type="hidden" name="add" value="1" />
-                                                    <input type="hidden" name="business" value=" " />
-                                                    <input type="hidden" name="item_name" value="Intex Power Bank" />
-                                                    <input type="hidden" name="amount" value="100.00" />
-                                                    <input type="hidden" name="discount_amount" value="1.00" />
-                                                    <input type="hidden" name="currency_code" value="USD" />
-                                                    <input type="hidden" name="return" value=" " />
-                                                    <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 product-men mt-md-0 mt-5 mt-5">
-                                <div class="men-pro-item simpleCart_shelfItem">
-                                    <div class="men-thumb-item text-center">
-                                        <img src="images/mk8.jpg" alt="" class="img-fluid" />
-                                        <div class="men-cart-pro">
-                                            <div class="inner-men-cart-pro">
-                                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <span class="product-new-top">New</span>
-                                    <div class="item-info-product text-center border-top mt-4">
-                                        <h4 class="pt-1">
-                                            <a href="single.html">HP Wireless Printer</a>
-                                        </h4>
-                                        <div class="info-product-price my-2">
-                                            <span class="item_price">$243.00</span>
-                                            <del>$250.00</del>
-                                        </div>
-                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                            <form action="#" method="post">
-                                                <fieldset>
-                                                    <input type="hidden" name="cmd" value="_cart" />
-                                                    <input type="hidden" name="add" value="1" />
-                                                    <input type="hidden" name="business" value=" " />
-                                                    <input type="hidden" name="item_name" value="HP Wireless Printer" />
-                                                    <input type="hidden" name="amount" value="243.00" />
-                                                    <input type="hidden" name="discount_amount" value="1.00" />
-                                                    <input type="hidden" name="currency_code" value="USD" />
-                                                    <input type="hidden" name="return" value=" " />
-                                                    <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 product-men mt-md-0 mt-5 mt-5">
-                                <div class="men-pro-item simpleCart_shelfItem">
-                                    <div class="men-thumb-item text-center">
-                                        <img src="images/mk9.jpg" alt="" class="img-fluid" />
-                                        <div class="men-cart-pro">
-                                            <div class="inner-men-cart-pro">
-                                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item-info-product text-center border-top mt-4">
-                                        <h4 class="pt-1">
-                                            <a href="single.html">Alcatel Tablet</a>
-                                        </h4>
-                                        <div class="info-product-price my-2">
-                                            <span class="item_price">$320.00</span>
-                                            <del>$350.00</del>
-                                        </div>
-                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                            <form action="#" method="post">
-                                                <fieldset>
-                                                    <input type="hidden" name="cmd" value="_cart" />
-                                                    <input type="hidden" name="add" value="1" />
-                                                    <input type="hidden" name="business" value=" " />
-                                                    <input type="hidden" name="item_name" value="Alcatel Tablet" />
-                                                    <input type="hidden" name="amount" value="320.00" />
-                                                    <input type="hidden" name="discount_amount" value="1.00" />
-                                                    <input type="hidden" name="currency_code" value="USD" />
-                                                    <input type="hidden" name="return" value=" " />
-                                                    <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                     <!-- //fourth section -->
                 </div>
             </div>
