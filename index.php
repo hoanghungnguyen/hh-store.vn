@@ -5,8 +5,12 @@ require "db/connect.php";
 include("./include/header.php");
 include("./include/menu.php");
 include("./include/slider.php");
-include("./include/home.php");
-include("./include/chitietsanpham.php");
+if (isset($_GET['quanly']) == 'danhmuc') {
+	include("./include/danhmuc.php");
+} else {
+	include("./include/home.php");
+}
+
 include("./include/footer.php");
 
 ?>

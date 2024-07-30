@@ -2,9 +2,7 @@
     <div class="container py-xl-4 py-lg-2">
         <!-- tittle heading -->
         <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
-            <span>M</span>obiles
-            <span>&</span>
-            <span>C</span>omputers
+            Danh mục
         </h3>
         <!-- //tittle heading -->
         <div class="row">
@@ -32,8 +30,7 @@
                                             <span class="item_price">$200.00</span>
                                             <del>$280.00</del>
                                         </div>
-                                        <div
-                                            class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                             <form action="#" method="post">
                                                 <fieldset>
                                                     <input type="hidden" name="cmd" value="_cart" />
@@ -45,8 +42,7 @@
                                                     <input type="hidden" name="currency_code" value="USD" />
                                                     <input type="hidden" name="return" value=" " />
                                                     <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart"
-                                                        class="button btn" />
+                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
                                                 </fieldset>
                                             </form>
                                         </div>
@@ -72,8 +68,7 @@
                                             <span class="item_price">$230.00</span>
                                             <del>$250.00</del>
                                         </div>
-                                        <div
-                                            class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                             <form action="#" method="post">
                                                 <fieldset>
                                                     <input type="hidden" name="cmd" value="_cart" />
@@ -85,8 +80,7 @@
                                                     <input type="hidden" name="currency_code" value="USD" />
                                                     <input type="hidden" name="return" value=" " />
                                                     <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart"
-                                                        class="button btn" />
+                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
                                                 </fieldset>
                                             </form>
                                         </div>
@@ -112,8 +106,7 @@
                                             <span class="item_price">$280.00</span>
                                             <del>$300.00</del>
                                         </div>
-                                        <div
-                                            class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                             <form action="#" method="post">
                                                 <fieldset>
                                                     <input type="hidden" name="cmd" value="_cart" />
@@ -125,8 +118,7 @@
                                                     <input type="hidden" name="currency_code" value="USD" />
                                                     <input type="hidden" name="return" value=" " />
                                                     <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart"
-                                                        class="button btn" />
+                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
                                                 </fieldset>
                                             </form>
                                         </div>
@@ -158,8 +150,7 @@
                                             <del>$320.00</del>
                                         </div>
                                         <span class="product-new-top">New</span>
-                                        <div
-                                            class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                             <form action="#" method="post">
                                                 <fieldset>
                                                     <input type="hidden" name="cmd" value="_cart" />
@@ -171,8 +162,7 @@
                                                     <input type="hidden" name="currency_code" value="USD" />
                                                     <input type="hidden" name="return" value=" " />
                                                     <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart"
-                                                        class="button btn" />
+                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
                                                 </fieldset>
                                             </form>
                                         </div>
@@ -197,8 +187,7 @@
                                             <span class="item_price">$233.00</span>
                                             <del>$240.00</del>
                                         </div>
-                                        <div
-                                            class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                             <form action="#" method="post">
                                                 <fieldset>
                                                     <input type="hidden" name="cmd" value="_cart" />
@@ -210,8 +199,7 @@
                                                     <input type="hidden" name="currency_code" value="USD" />
                                                     <input type="hidden" name="return" value=" " />
                                                     <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart"
-                                                        class="button btn" />
+                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
                                                 </fieldset>
                                             </form>
                                         </div>
@@ -237,8 +225,7 @@
                                             <del>$260.00</del>
                                         </div>
                                         <span class="product-new-top">New</span>
-                                        <div
-                                            class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                             <form action="#" method="post">
                                                 <fieldset>
                                                     <input type="hidden" name="cmd" value="_cart" />
@@ -250,8 +237,7 @@
                                                     <input type="hidden" name="currency_code" value="USD" />
                                                     <input type="hidden" name="return" value=" " />
                                                     <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart"
-                                                        class="button btn" />
+                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
                                                 </fieldset>
                                             </form>
                                         </div>
@@ -282,8 +268,7 @@
                                             <span class="item_price">$252.00</span>
                                             <del>$260.00</del>
                                         </div>
-                                        <div
-                                            class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                             <form action="#" method="post">
                                                 <fieldset>
                                                     <input type="hidden" name="cmd" value="_cart" />
@@ -295,8 +280,7 @@
                                                     <input type="hidden" name="currency_code" value="USD" />
                                                     <input type="hidden" name="return" value=" " />
                                                     <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart"
-                                                        class="button btn" />
+                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
                                                 </fieldset>
                                             </form>
                                         </div>
@@ -321,8 +305,7 @@
                                             <span class="item_price">$240.00</span>
                                             <del>$260.00</del>
                                         </div>
-                                        <div
-                                            class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                             <form action="#" method="post">
                                                 <fieldset>
                                                     <input type="hidden" name="cmd" value="_cart" />
@@ -334,8 +317,7 @@
                                                     <input type="hidden" name="currency_code" value="USD" />
                                                     <input type="hidden" name="return" value=" " />
                                                     <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart"
-                                                        class="button btn" />
+                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
                                                 </fieldset>
                                             </form>
                                         </div>
@@ -360,8 +342,7 @@
                                             <span class="item_price">$300.00</span>
                                             <del>$320.00</del>
                                         </div>
-                                        <div
-                                            class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                             <form action="#" method="post">
                                                 <fieldset>
                                                     <input type="hidden" name="cmd" value="_cart" />
@@ -373,8 +354,7 @@
                                                     <input type="hidden" name="currency_code" value="USD" />
                                                     <input type="hidden" name="return" value=" " />
                                                     <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart"
-                                                        class="button btn" />
+                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
                                                 </fieldset>
                                             </form>
                                         </div>
@@ -406,8 +386,7 @@
                                             <span class="item_price">$100.00</span>
                                             <del>$200.00</del>
                                         </div>
-                                        <div
-                                            class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                             <form action="#" method="post">
                                                 <fieldset>
                                                     <input type="hidden" name="cmd" value="_cart" />
@@ -419,8 +398,7 @@
                                                     <input type="hidden" name="currency_code" value="USD" />
                                                     <input type="hidden" name="return" value=" " />
                                                     <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart"
-                                                        class="button btn" />
+                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
                                                 </fieldset>
                                             </form>
                                         </div>
@@ -446,8 +424,7 @@
                                             <span class="item_price">$243.00</span>
                                             <del>$250.00</del>
                                         </div>
-                                        <div
-                                            class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                             <form action="#" method="post">
                                                 <fieldset>
                                                     <input type="hidden" name="cmd" value="_cart" />
@@ -459,8 +436,7 @@
                                                     <input type="hidden" name="currency_code" value="USD" />
                                                     <input type="hidden" name="return" value=" " />
                                                     <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart"
-                                                        class="button btn" />
+                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
                                                 </fieldset>
                                             </form>
                                         </div>
@@ -485,8 +461,7 @@
                                             <span class="item_price">$320.00</span>
                                             <del>$350.00</del>
                                         </div>
-                                        <div
-                                            class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                             <form action="#" method="post">
                                                 <fieldset>
                                                     <input type="hidden" name="cmd" value="_cart" />
@@ -498,8 +473,7 @@
                                                     <input type="hidden" name="currency_code" value="USD" />
                                                     <input type="hidden" name="return" value=" " />
                                                     <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart"
-                                                        class="button btn" />
+                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
                                                 </fieldset>
                                             </form>
                                         </div>
