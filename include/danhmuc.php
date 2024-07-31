@@ -31,48 +31,40 @@ $title = $row_title['category_name'];
                     <div class="product-sec1 px-sm-4 px-3 py-sm-5 py-3 mb-4">
                         <div class="row">
                             <?php while ($row_sanpham = mysqli_fetch_array($sql_cate)) { ?>
-                            <div class="col-md-4 product-men mt-5">
-                                <div class="men-pro-item simpleCart_shelfItem">
-                                    <div class="men-thumb-item text-center">
-                                        <img src="images/<?php echo $row_sanpham['sanpham_image'] ?>" alt="">
-                                        <div class="men-cart-pro">
-                                            <div class="inner-men-cart-pro">
-                                                <a href="?quanly=chitietsp&id=<?php echo $row_sanpham['sanpham_id']; ?>"
-                                                    class="link-product-add-cart">Xem sản phẩm</a>
+                                <div class="col-md-4 product-men mt-5">
+                                    <div class="men-pro-item simpleCart_shelfItem">
+                                        <div class="men-thumb-item text-center">
+                                            <img src="images/<?php echo $row_sanpham['sanpham_image'] ?>" alt="">
+                                            <div class="men-cart-pro">
+                                                <div class="inner-men-cart-pro">
+                                                    <a href="?quanly=chitietsp&id=<?php echo $row_sanpham['sanpham_id']; ?>" class="link-product-add-cart">Xem sản phẩm</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="item-info-product text-center border-top mt-4">
+                                            <h4 class="pt-1">
+                                                <a href="?quanly=chitietsp&id=<?php echo $row_sanpham['sanpham_id']; ?>">
+                                                    <?php echo $row_sanpham['sanpham_name'] ?></a>
+                                            </h4>
+                                            <div class="info-product-price my-2">
+                                                <span class="item_price"><?php echo number_format($row_sanpham['sanpham_giakhuyenmai']) . 'vnđ'  ?></span>
+                                                <del><?php echo number_format($row_sanpham['sanpham_gia']) . 'vnđ'  ?></del>
+                                            </div>
+                                            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                                <form action="?quanly=giohang" method="POST">
+                                                    <fieldset>
+                                                        <input type="hidden" name="tensanpham" value="<?php echo $row_sanpham['sanpham_name'] ?>" />
+                                                        <input type="hidden" name="sanpham_id" value="<?php echo $row_sanpham['sanpham_id'] ?>" />
+                                                        <input type="hidden" name="giasanpham" value="<?php echo $row_sanpham['sanpham_giakhuyenmai'] ?>" />
+                                                        <input type="hidden" name="hinhanh" value="<?php echo $row_sanpham['sanpham_image'] ?>" />
+                                                        <input type="hidden" name="soluong" value="1" />
+                                                        <input type="submit" name="btn_giohang" value="Thêm giỏ hàng" class="button" />
+                                                    </fieldset>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item-info-product text-center border-top mt-4">
-                                        <h4 class="pt-1">
-                                            <a href="?quanly=chitietsp&id=<?php echo $row_sanpham['sanpham_id']; ?>">
-                                                <?php echo $row_sanpham['sanpham_name'] ?></a>
-                                        </h4>
-                                        <div class="info-product-price my-2">
-                                            <span
-                                                class="item_price"><?php echo number_format($row_sanpham['sanpham_giakhuyenmai']) . 'vnđ'  ?></span>
-                                            <del><?php echo number_format($row_sanpham['sanpham_gia']) . 'vnđ'  ?></del>
-                                        </div>
-                                        <div
-                                            class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                            <form action="?quanly=giohang" method="POST">
-                                                <fieldset>
-                                                    <input type="hidden" name="tensanpham"
-                                                        value="<?php echo $row_sanpham['sanpham_name'] ?>" />
-                                                    <input type="hidden" name="sanpham_id"
-                                                        value="<?php echo $row_sanpham['sanpham_id'] ?>" />
-                                                    <input type="hidden" name="giasanpham"
-                                                        value="<?php echo $row_sanpham['sanpham_giakhuyenmai'] ?>" />
-                                                    <input type="hidden" name="hinhanh"
-                                                        value="<?php echo $row_sanpham['sanpham_image'] ?>" />
-                                                    <input type="hidden" name="soluong" value="1" />
-                                                    <input type="submit" name="btn_giohang" value="Thêm giỏ hàng"
-                                                        class="button" />
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                    </div>
                                 </div>
-                            </div>
                             <?php } ?>
 
                         </div>
