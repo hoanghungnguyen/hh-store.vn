@@ -30,6 +30,11 @@ if (isset($_POST['btn_giohang'])) {
             $sql_update = mysqli_query($con, "UPDATE tbl_giohang SET soluong = '$soluong' WHERE sanpham_id = '$sanpham_id'");
         }
     }
+} elseif (isset($_GET['xoa'])) {
+    $id = $_GET['xoa'];
+    $sql_delete = mysqli_query($con, "DELETE FROM tbl_giohang WHERE giohang_id = '$id'");
+} else {
+    header("location:?quanly=giohang");
 }
 
 
@@ -84,42 +89,37 @@ if (isset($_POST['btn_giohang'])) {
                                 $tt++;
                                 $total += $sub_total;
                             ?>
-                            <tr class="rem1">
-                                <td class="invert"><?php echo $tt; ?></td>
-                                <td class="invert-image" style="width: 269px">
-                                    <a href="single.html">
-                                        <img src="images/<?php echo $row_lay_giohang['hinhanh']; ?>" alt=" "
-                                            class="img-responsive">
-                                    </a>
-                                </td>
-                                <td class="invert">
-                                    <div class="quantity">
-                                        <input type="hidden" name="product_id[]"
-                                            value="<?php echo $row_lay_giohang['sanpham_id']; ?>">
-                                        </input>
-                                        <input style="text-align: center; width: 48px;" name="soluong[]" type="number"
-                                            min="0" value="<?php echo $row_lay_giohang['soluong']; ?>"
-                                            class="quantity-select">
-                                        </input>
-                                    </div>
-                                </td>
-                                <td class="invert"><?php echo $row_lay_giohang['tensanpham']; ?></td>
-                                <td class="invert"><?php echo number_format($row_lay_giohang['giasanpham']) . "vnđ";  ?>
-                                </td>
-                                <td class="invert"><?php echo number_format($sub_total) . "vnđ"; ?></td>
-                                <td class="invert">
-                                    <div class="rem">
-                                        <div class="close1"> </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                <tr class="rem1">
+                                    <td class="invert"><?php echo $tt; ?></td>
+                                    <td class="invert-image" style="width: 269px">
+                                        <a href="single.html">
+                                            <img src="images/<?php echo $row_lay_giohang['hinhanh']; ?>" alt=" " class="img-responsive">
+                                        </a>
+                                    </td>
+                                    <td class="invert">
+                                        <div class="quantity">
+                                            <input type="hidden" name="product_id[]" value="<?php echo $row_lay_giohang['sanpham_id']; ?>">
+                                            </input>
+                                            <input style="text-align: center; width: 48px;" name="soluong[]" type="number" min="0" value="<?php echo $row_lay_giohang['soluong']; ?>" class="quantity-select">
+                                            </input>
+                                        </div>
+                                    </td>
+                                    <td class="invert"><?php echo $row_lay_giohang['tensanpham']; ?></td>
+                                    <td class="invert"><?php echo number_format($row_lay_giohang['giasanpham']) . "vnđ";  ?>
+                                    </td>
+                                    <td class="invert"><?php echo number_format($sub_total) . "vnđ"; ?></td>
+                                    <td class="invert">
+                                        <div class="rem">
+                                            <a href="?quanly=giohang&xoa=<?php echo $row_lay_giohang['giohang_id']; ?>">Xóa</a>
+                                        </div>
+                                    </td>
+                                </tr>
                             <?php } ?>
                             <tr>
                                 <td colspan="7">Tổng tiền: <?php echo number_format($total) . "vnđ"; ?></td>
                             </tr>
                             <tr>
-                                <td colspan="7"><input type="submit" class="btn btn-success" value="Cập nhật giỏ hàng"
-                                        name="capnhatgiohang"></td>
+                                <td colspan="7"><input type="submit" class="btn btn-success" value="Cập nhật giỏ hàng" name="capnhatgiohang"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -134,26 +134,22 @@ if (isset($_POST['btn_giohang'])) {
                         <div class="information-wrapper">
                             <div class="first-row">
                                 <div class="controls form-group">
-                                    <input class="billing-address-name form-control" type="text" name="name"
-                                        placeholder="Họ và tên" required="">
+                                    <input class="billing-address-name form-control" type="text" name="name" placeholder="Họ và tên" required="">
                                 </div>
                                 <div class="w3_agileits_card_number_grids">
                                     <div class="w3_agileits_card_number_grid_left form-group">
                                         <div class="controls">
-                                            <input type="text" class="form-control" placeholder="Số điện thoại"
-                                                name="number" required="">
+                                            <input type="text" class="form-control" placeholder="Số điện thoại" name="number" required="">
                                         </div>
                                     </div>
                                     <div class="w3_agileits_card_number_grid_right form-group">
                                         <div class="controls">
-                                            <input type="text" class="form-control" placeholder="Tỉnh/thành phố"
-                                                name="landmark" required="">
+                                            <input type="text" class="form-control" placeholder="Tỉnh/thành phố" name="landmark" required="">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="controls form-group">
-                                    <input type="text" class="form-control" placeholder="Town/City" name="city"
-                                        required="">
+                                    <input type="text" class="form-control" placeholder="Town/City" name="city" required="">
                                 </div>
                                 <div class="controls form-group">
                                     <select class="option-w3ls">
