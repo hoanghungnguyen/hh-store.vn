@@ -1,3 +1,21 @@
+<?php
+if (isset($_POST['btn_giohang'])) {
+    $tensanpham = $_POST['tensanpham'];
+    $sanpham_id = $_POST['sanpham_id'];
+    $giasanpham = $_POST['giasanpham'];
+    $hinhanh = $_POST['hinhanh'];
+    $soluong = $_POST['soluong'];
+
+    $sql_giohang = mysqli_query($con, "INSERT INTO tbl_giohang (tensanpham, sanpham_id, giasanpham, hinhanh, soluong) values ('$tensanpham','$sanpham_id','$giasanpham','$hinhanh','$soluong')");
+    if ($sql_giohang == 0) {
+        header("location:index.php?quanly=chitietsp&id=" . $sanpham_id);
+    }
+}
+
+
+?>
+
+
 <div class="services-breadcrumb">
     <div class="agile_inner_breadcrumb">
         <div class="container">
@@ -63,58 +81,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr class="rem2">
-                            <td class="invert">2</td>
-                            <td class="invert-image">
-                                <a href="single2.html">
-                                    <img src="images/a4.jpg" alt=" " class="img-responsive">
-                                </a>
-                            </td>
-                            <td class="invert">
-                                <div class="quantity">
-                                    <div class="quantity-select">
-                                        <div class="entry value-minus">&nbsp;</div>
-                                        <div class="entry value">
-                                            <span>1</span>
-                                        </div>
-                                        <div class="entry value-plus active">&nbsp;</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="invert">Cordless Trimmer</td>
-                            <td class="invert">$1,999</td>
-                            <td class="invert">
-                                <div class="rem">
-                                    <div class="close2"> </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="rem3">
-                            <td class="invert">3</td>
-                            <td class="invert-image">
-                                <a href="single.html">
-                                    <img src="images/a3.jpg" alt=" " class="img-responsive">
-                                </a>
-                            </td>
-                            <td class="invert">
-                                <div class="quantity">
-                                    <div class="quantity-select">
-                                        <div class="entry value-minus">&nbsp;</div>
-                                        <div class="entry value">
-                                            <span>1</span>
-                                        </div>
-                                        <div class="entry value-plus active">&nbsp;</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="invert">Nikon Camera</td>
-                            <td class="invert">$37,490</td>
-                            <td class="invert">
-                                <div class="rem">
-                                    <div class="close3"> </div>
-                                </div>
-                            </td>
-                        </tr>
+
                     </tbody>
                 </table>
             </div>

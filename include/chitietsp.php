@@ -77,16 +77,12 @@ while ($row_chitiet = mysqli_fetch_array($sql_chitiet)) {
 						<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 							<form action="?quanly=giohang" method="POST">
 								<fieldset>
-									<input type="hidden" name="cmd" value="_cart" />
-									<input type="hidden" name="add" value="1" />
-									<input type="hidden" name="business" value=" " />
-									<input type="hidden" name="item_name" value="Samsung Galaxy J7 Prime" />
-									<input type="hidden" name="amount" value="200.00" />
-									<input type="hidden" name="discount_amount" value="1.00" />
-									<input type="hidden" name="currency_code" value="USD" />
-									<input type="hidden" name="return" value=" " />
-									<input type="hidden" name="cancel_return" value=" " />
-									<input type="submit" name="submit" value="Thêm giỏ hàng" class="button" />
+									<input type="hidden" name="tensanpham" value="<?php echo $row_chitiet['sanpham_name'] ?>" />
+									<input type="hidden" name="sanpham_id" value="<?php echo $row_chitiet['sanpham_id'] ?>" />
+									<input type="hidden" name="giasanpham" value="<?php echo $row_chitiet['sanpham_giakhuyenmai'] ?>" />
+									<input type="hidden" name="hinhanh" value="<?php echo $row_chitiet['sanpham_image'] ?>" />
+									<input type="number" name="soluong" value="1" />
+									<input type="submit" name="btn_giohang" value="Thêm giỏ hàng" class="button" />
 								</fieldset>
 							</form>
 						</div>
