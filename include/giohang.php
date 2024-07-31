@@ -33,8 +33,14 @@ if (isset($_POST['btn_giohang'])) {
 } elseif (isset($_GET['xoa'])) {
     $id = $_GET['xoa'];
     $sql_delete = mysqli_query($con, "DELETE FROM tbl_giohang WHERE giohang_id = '$id'");
-} else {
-    header("location:?quanly=giohang");
+} elseif (isset($_POST['thanhtoan'])) {
+    $name = $_POST['name'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    $note = $_POST['note'];
+    $gmail = $_POST['email'];
+    $giaohang = $_POST['giaohang'];
+    $sql_thanhtoan = mysqli_query($con, "INSERT INTO tbl_khachhang (name, phone, address, note, email, giaohang ) VALUES('$name','$phone','$address','$note','$gmail','$giaohang') ");
 }
 
 
@@ -129,7 +135,7 @@ if (isset($_POST['btn_giohang'])) {
         <div class="checkout-left">
             <div class="address_form_agile mt-sm-5 mt-4">
                 <h4 class="mb-sm-4 mb-3">Thêm địa chỉ giao hàng</h4>
-                <form action="payment.html" method="post" class="creditly-card-form agileinfo_form">
+                <form action="" method="POST" class="creditly-card-form agileinfo_form">
                     <div class="creditly-wrapper wthree, w3_agileits_wrapper">
                         <div class="information-wrapper">
                             <div class="first-row">
@@ -139,37 +145,38 @@ if (isset($_POST['btn_giohang'])) {
                                 <div class="w3_agileits_card_number_grids">
                                     <div class="w3_agileits_card_number_grid_left form-group">
                                         <div class="controls">
-                                            <input type="text" class="form-control" placeholder="Số điện thoại" name="number" required="">
+                                            <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" required="">
                                         </div>
                                     </div>
                                     <div class="w3_agileits_card_number_grid_right form-group">
                                         <div class="controls">
-                                            <input type="text" class="form-control" placeholder="Tỉnh/thành phố" name="landmark" required="">
+                                            <input type="text" class="form-control" placeholder="Địa chỉ" name="address" required="">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="controls form-group">
-                                    <input type="text" class="form-control" placeholder="Town/City" name="city" required="">
+                                    <input type="text" class="form-control" placeholder="Gmail" name="email" required="">
                                 </div>
                                 <div class="controls form-group">
-                                    <select class="option-w3ls">
-                                        <option>Select Address type</option>
-                                        <option>Office</option>
-                                        <option>Home</option>
-                                        <option>Commercial</option>
-
+                                    <textarea style="resize: none;" name="note" class="form-control" placeholder="Ghi chú..."></textarea>
+                                </div>
+                                <div class="controls form-group">
+                                    <select name="giaohang" class="option-w3ls">
+                                        <option>Chọn hình thức thanh toán</option>
+                                        <option value="1">Thanh toán ATM</option>
+                                        <option value="0">Thanh toán tại nhà</option>
                                     </select>
                                 </div>
                             </div>
-                            <button class="submit check_out btn">Giao hàng đến địa chỉ này</button>
+                            <input type="submit" name="thanhtoan" class="submit check_out btn" value="Thanh toán đến địa chỉ này" style="width: 22%;">
                         </div>
                     </div>
                 </form>
-                <div class="checkout-right-basket">
+                <!-- <div class="checkout-right-basket">
                     <a href="payment.html">Thực hiện thanh toán
                         <span class="far fa-hand-point-right"></span>
                     </a>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
