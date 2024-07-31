@@ -11,11 +11,7 @@ if (isset($_POST['btn_giohang'])) {
         header("location:index.php?quanly=chitietsp&id=" . $sanpham_id);
     }
 }
-
-
 ?>
-
-
 <div class="services-breadcrumb">
     <div class="agile_inner_breadcrumb">
         <div class="container">
@@ -55,11 +51,18 @@ if (isset($_POST['btn_giohang'])) {
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                        $tt = 0;
+                        $sql_lay_giohang = mysqli_query($con, "SELECT * FROM `tbl_giohang` ORDER BY sanpham_id");
+                        while ($row_lay_giohang = mysqli_fetch_array($sql_lay_giohang)) {
+                            $tt++;
+                        ?>
                         <tr class="rem1">
-                            <td class="invert">1</td>
-                            <td class="invert-image">
+                            <td class="invert"><?php echo $tt; ?></td>
+                            <td class="invert-image" style="width: 269px">
                                 <a href="single.html">
-                                    <img src="images/a.jpg" alt=" " class="img-responsive">
+                                    <img src="images/<?php echo $row_lay_giohang['hinhanh']; ?>" alt=" "
+                                        class="img-responsive">
                                 </a>
                             </td>
                             <td class="invert">
@@ -73,15 +76,15 @@ if (isset($_POST['btn_giohang'])) {
                                     </div>
                                 </div>
                             </td>
-                            <td class="invert">Back Cover</td>
-                            <td class="invert">$259</td>
+                            <td class="invert"><?php echo $row_lay_giohang['tensanpham']; ?></td>
+                            <td class="invert"><?php echo $row_lay_giohang['giasanpham']; ?></td>
                             <td class="invert">
                                 <div class="rem">
                                     <div class="close1"> </div>
                                 </div>
                             </td>
                         </tr>
-
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
@@ -94,22 +97,26 @@ if (isset($_POST['btn_giohang'])) {
                         <div class="information-wrapper">
                             <div class="first-row">
                                 <div class="controls form-group">
-                                    <input class="billing-address-name form-control" type="text" name="name" placeholder="Họ và tên" required="">
+                                    <input class="billing-address-name form-control" type="text" name="name"
+                                        placeholder="Họ và tên" required="">
                                 </div>
                                 <div class="w3_agileits_card_number_grids">
                                     <div class="w3_agileits_card_number_grid_left form-group">
                                         <div class="controls">
-                                            <input type="text" class="form-control" placeholder="Số điện thoại" name="number" required="">
+                                            <input type="text" class="form-control" placeholder="Số điện thoại"
+                                                name="number" required="">
                                         </div>
                                     </div>
                                     <div class="w3_agileits_card_number_grid_right form-group">
                                         <div class="controls">
-                                            <input type="text" class="form-control" placeholder="Tỉnh/thành phố" name="landmark" required="">
+                                            <input type="text" class="form-control" placeholder="Tỉnh/thành phố"
+                                                name="landmark" required="">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="controls form-group">
-                                    <input type="text" class="form-control" placeholder="Town/City" name="city" required="">
+                                    <input type="text" class="form-control" placeholder="Town/City" name="city"
+                                        required="">
                                 </div>
                                 <div class="controls form-group">
                                     <select class="option-w3ls">
