@@ -6,7 +6,17 @@ if (isset($_POST['btn_giohang'])) {
     $hinhanh = $_POST['hinhanh'];
     $soluong = $_POST['soluong'];
 
-    $sql_giohang = mysqli_query($con, "INSERT INTO tbl_giohang (tensanpham, sanpham_id, giasanpham, hinhanh, soluong) values ('$tensanpham','$sanpham_id','$giasanpham','$hinhanh','$soluong')");
+    $sql_select_giohang = mysqli_query($con, "SELECT * FROM tbl_giohang WHERE sanpham_id = '$sanpham_id'");
+    $count = mysqli_num_rows($sql_select_giohang);
+    if ($count > 0) {
+        $row_sanpham = mysqli_fetch_array($sql_select_giohang);
+        $soluong = $row_sanpham['soluong'] + 1;
+        $sql_giohang = "UPDATE tbl_giohang SET soluong = '$soluong' WHERE sanpham_id = '$sanpham_id'";
+    } else {
+        $soluong = $soluong;
+        $sql_giohang = "INSERT INTO tbl_giohang (tensanpham, sanpham_id, giasanpham, hinhanh, soluong) values ('$tensanpham','$sanpham_id','$giasanpham','$hinhanh','$soluong')";
+    }
+    $insert_row = mysqli_query($con, $sql_giohang);
     if ($sql_giohang == 0) {
         header("location:index.php?quanly=chitietsp&id=" . $sanpham_id);
     }
@@ -57,33 +67,32 @@ if (isset($_POST['btn_giohang'])) {
                         while ($row_lay_giohang = mysqli_fetch_array($sql_lay_giohang)) {
                             $tt++;
                         ?>
-                        <tr class="rem1">
-                            <td class="invert"><?php echo $tt; ?></td>
-                            <td class="invert-image" style="width: 269px">
-                                <a href="single.html">
-                                    <img src="images/<?php echo $row_lay_giohang['hinhanh']; ?>" alt=" "
-                                        class="img-responsive">
-                                </a>
-                            </td>
-                            <td class="invert">
-                                <div class="quantity">
-                                    <div class="quantity-select">
-                                        <div class="entry value-minus">&nbsp;</div>
-                                        <div class="entry value">
-                                            <span>1</span>
+                            <tr class="rem1">
+                                <td class="invert"><?php echo $tt; ?></td>
+                                <td class="invert-image" style="width: 269px">
+                                    <a href="single.html">
+                                        <img src="images/<?php echo $row_lay_giohang['hinhanh']; ?>" alt=" " class="img-responsive">
+                                    </a>
+                                </td>
+                                <td class="invert">
+                                    <div class="quantity">
+                                        <div class="quantity-select">
+                                            <div class="entry value-minus">&nbsp;</div>
+                                            <div class="entry value">
+                                                <span>1</span>
+                                            </div>
+                                            <div class="entry value-plus active">&nbsp;</div>
                                         </div>
-                                        <div class="entry value-plus active">&nbsp;</div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="invert"><?php echo $row_lay_giohang['tensanpham']; ?></td>
-                            <td class="invert"><?php echo $row_lay_giohang['giasanpham']; ?></td>
-                            <td class="invert">
-                                <div class="rem">
-                                    <div class="close1"> </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                                <td class="invert"><?php echo $row_lay_giohang['tensanpham']; ?></td>
+                                <td class="invert"><?php echo $row_lay_giohang['giasanpham']; ?></td>
+                                <td class="invert">
+                                    <div class="rem">
+                                        <div class="close1"> </div>
+                                    </div>
+                                </td>
+                            </tr>
                         <?php } ?>
                     </tbody>
                 </table>
@@ -97,26 +106,22 @@ if (isset($_POST['btn_giohang'])) {
                         <div class="information-wrapper">
                             <div class="first-row">
                                 <div class="controls form-group">
-                                    <input class="billing-address-name form-control" type="text" name="name"
-                                        placeholder="Họ và tên" required="">
+                                    <input class="billing-address-name form-control" type="text" name="name" placeholder="Họ và tên" required="">
                                 </div>
                                 <div class="w3_agileits_card_number_grids">
                                     <div class="w3_agileits_card_number_grid_left form-group">
                                         <div class="controls">
-                                            <input type="text" class="form-control" placeholder="Số điện thoại"
-                                                name="number" required="">
+                                            <input type="text" class="form-control" placeholder="Số điện thoại" name="number" required="">
                                         </div>
                                     </div>
                                     <div class="w3_agileits_card_number_grid_right form-group">
                                         <div class="controls">
-                                            <input type="text" class="form-control" placeholder="Tỉnh/thành phố"
-                                                name="landmark" required="">
+                                            <input type="text" class="form-control" placeholder="Tỉnh/thành phố" name="landmark" required="">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="controls form-group">
-                                    <input type="text" class="form-control" placeholder="Town/City" name="city"
-                                        required="">
+                                    <input type="text" class="form-control" placeholder="Town/City" name="city" required="">
                                 </div>
                                 <div class="controls form-group">
                                     <select class="option-w3ls">
