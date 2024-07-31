@@ -16,6 +16,8 @@ if ($tam == 'danhmuc') {
 	include("./include/danhmuc.php");
 } else if ($tam == 'chitietsp') {
 	include("./include/chitietsp.php");
+} else if ($tam == 'giohang') {
+	include("./include/giohang.php");
 } else {
 	include("./include/home.php");
 }
@@ -66,7 +68,7 @@ include("./include/footer.php");
 <!-- //popup modal (for location)-->
 
 <!-- cart-js -->
-<script src="js/minicart.js"></script>
+<!-- <script src="js/minicart.js"></script> -->
 <script>
 	paypals.minicarts
 		.render(); //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js

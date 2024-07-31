@@ -47,7 +47,7 @@
                                         </div>
                                         <div
                                             class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                            <form action="#" method="post">
+                                            <form action="?quanly=giohang" method="POST">
                                                 <fieldset>
                                                     <input type="hidden" name="cmd" value="_cart" />
                                                     <input type="hidden" name="add" value="1" />
