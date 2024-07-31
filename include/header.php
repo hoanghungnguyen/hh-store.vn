@@ -44,7 +44,7 @@
         <div class="container-fluid">
             <div class="row main-top-w3l py-2">
                 <div class="col-lg-4 header-most-top">
-                    <p class="text-white text-lg-left text-center">Offer Zone Top Deals & Discounts
+                    <p class="text-white text-lg-left text-center">Ưu đãi & giảm giá hàng đầu
                         <i class="fas fa-shopping-cart ml-1"></i>
                     </p>
                 </div>
@@ -53,22 +53,22 @@
                     <ul>
                         <li class="text-center border-right text-white">
                             <a class="play-icon popup-with-zoom-anim text-white" href="#small-dialog1">
-                                <i class="fas fa-map-marker mr-2"></i>Select Location</a>
+                                <i class="fas fa-map-marker mr-2"></i>Chọn địa điểm</a>
                         </li>
                         <li class="text-center border-right text-white">
                             <a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">
-                                <i class="fas fa-truck mr-2"></i>Track Order</a>
+                                <i class="fas fa-truck mr-2"></i>Theo dõi đơn hàng</a>
                         </li>
                         <li class="text-center border-right text-white">
-                            <i class="fas fa-phone mr-2"></i> 001 234 5678
+                            <i class="fas fa-phone mr-2"></i> 0777682597
                         </li>
                         <li class="text-center border-right text-white">
                             <a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">
-                                <i class="fas fa-sign-in-alt mr-2"></i> Log In </a>
+                                <i class="fas fa-sign-in-alt mr-2"></i> Đăng nhập </a>
                         </li>
                         <li class="text-center text-white">
                             <a href="#" data-toggle="modal" data-target="#exampleModal2" class="text-white">
-                                <i class="fas fa-sign-out-alt mr-2"></i>Register </a>
+                                <i class="fas fa-sign-out-alt mr-2"></i>Đăng ký </a>
                         </li>
                     </ul>
                     <!-- //header lists -->
