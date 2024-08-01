@@ -1,7 +1,21 @@
 <?php
 require("../db/connect.php");
 ?>
-
+<?php
+if (isset($_POST['themdanhmuc'])) {
+    $tendanhmuc = $_POST['danhmuc'];
+    $sql_insert = mysqli_query($con, "INSERT INTO tbl_category (category_name) VALUES ('$tendanhmuc')");
+}
+if (isset($_GET['quanly'])) {
+    $xoa = $_GET['quanly'];
+    $id = $_GET['id'];
+} else {
+    $xoa = '';
+}
+if ($xoa = 'xoa') {
+    $sql_delete = mysqli_query($con, "DELETE FROM tbl_category WHERE category_id = '$id'");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +42,7 @@ require("../db/connect.php");
                     <label for="">Tên danh mục</label>
                     <form action="" method="POST">
                         <input type="text" name="danhmuc" class="form-control" placeholder="Tên danh mục">
-                        <input style="margin-top: 12px;" type="submit" name="themdanhmuc" class="btn btn-default" value="Thêm danh mục">
+                        <input style="margin-top: 12px;" type="submit" name="themdanhmuc" class="btn btn-default" value="Cập nhật danh mục">
                     </form>
                 </div>
             <?php } else { ?>
