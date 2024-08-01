@@ -43,7 +43,7 @@ if (isset($_POST['btn_giohang'])) {
     $sql_khachhang = mysqli_query($con, "INSERT INTO tbl_khachhang (name, phone, address, note, email, giaohang ) VALUES('$name','$phone','$address','$note','$gmail','$giaohang') ");
 
     if ($sql_khachhang) {
-        $sql_select_khachhang = mysqli_query($con, "SELECT tbl_khachhang ORDER BY khachhang_id DESC LIMIT 1");
+        $sql_select_khachhang = mysqli_query($con, "SELECT * FROM tbl_khachhang ORDER BY khachhang_id DESC LIMIT 1");
         $mahang = rand(0, 9999);
         $row_khachhang = mysqli_fetch_array($sql_select_khachhang);
         $khachhang_id = $row_khachhang['khachhang_id'];
@@ -51,7 +51,7 @@ if (isset($_POST['btn_giohang'])) {
             $sanpham_id = $_POST['thanhtoan_product_id'][$i];
             $soluong = $_POST['thanhtoan_soluong'][$i];
             $sql_donhang = mysqli_query($con, "INSERT INTO tbl_donhang(sanpham_id, khachhang_id, soluong, mahang) VALUES ('$sanpham_id', '$khachhang_id','$soluong', '$mahang') ");
-            $sql_delete_thanhtoan = mysqli_query($con, "DELETE tbl_giohang WHERE sanpham_id = '$sanpham_id'");
+            $sql_delete_thanhtoan = mysqli_query($con, "DELETE FROM tbl_giohang WHERE sanpham_id = '$sanpham_id'");
         }
     }
 }
@@ -109,7 +109,7 @@ if (isset($_POST['btn_giohang'])) {
                             <?php
                             $tt = 0;
                             $total = 0;
-                            $sql_lay_giohang = mysqli_query($con, "SELECT * FROM `tbl_giohang` ORDER BY sanpham_id");
+                            $sql_lay_giohang = mysqli_query($con, "SELECT * FROM `tbl_giohang` ORDER BY sanpham_id DESC");
                             while ($row_lay_giohang = mysqli_fetch_array($sql_lay_giohang)) {
                                 $sub_total = $row_lay_giohang['soluong'] * $row_lay_giohang['giasanpham'];
                                 $tt++;
@@ -188,6 +188,16 @@ if (isset($_POST['btn_giohang'])) {
                                     </select>
                                 </div>
                             </div>
+                            <?php
+                            $sql_lay_giohang = mysqli_query($con, "SELECT * FROM `tbl_giohang` ORDER BY sanpham_id DESC");
+                            while ($row_thanhtoan = mysqli_fetch_array($sql_lay_giohang)) {
+                            ?>
+
+                                <input type="hidden" name="thanhtoan_product_id[]" value="<?php echo $row_thanhtoan['sanpham_id']; ?>">
+                                </input>
+                                <input style="text-align: center; width: 48px;" name="thanhtoan_soluong[]" type="hidden" value="<?php echo $row_thanhtoan['soluong']; ?>" class="quantity-select">
+                                </input>
+                            <?php } ?>
                             <input type="submit" name="thanhtoan" class="submit check_out btn" value="Thanh toán đến địa chỉ này" style="width: 22%;">
                         </div>
                     </div>
