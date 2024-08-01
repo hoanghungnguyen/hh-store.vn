@@ -1,3 +1,15 @@
+<?php
+session_start();
+ob_start();
+
+
+if (empty($_SESSION['btn-login'])) {
+    header("location: index.php");
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

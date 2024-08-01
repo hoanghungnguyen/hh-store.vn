@@ -1,4 +1,10 @@
 <?php
+session_start();
+ob_start();
+?>
+
+<?php
+require('../db/connect.php');
 if (isset($_POST['btn-login'])) {
     $error = array();
     if (empty($_POST['email'])) {
@@ -26,14 +32,23 @@ if (isset($_POST['btn-login'])) {
             if (!preg_match($partten, $_POST['password'])) {
                 $error['password'] = 'Mật khẩu sai, vui lòng nhập lại';
             } else {
-                $password = $_POST['password'];
+                $password = md5($_POST['password']);
             }
         }
     }
 
     //kết luận
     if (empty($error)) {
-        header("location: dashboard.php");
+        $sql_login_admin = mysqli_query($con, "SELECT *FROM tbl_admin WHERE email = '$email' AND password = '$password' LIMIT 1");
+        $count = mysqli_num_rows($sql_login_admin);
+        $row_login_admin = mysqli_fetch_array($sql_login_admin);
+        if ($count > 0) {
+            header("location: dashboard.php");
+            $_SESSION['btn-login'] = $row_login_admin['admin_name'];
+            $_SESSION['admin_id'] = $row_login_admin['admin_id'];
+        } else {
+            echo "<p>Tên đăng nhập hoặc mật khẩu sai</p>";
+        }
     }
     //  else {
     //     echo "Lỗi";
