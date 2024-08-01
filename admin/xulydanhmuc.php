@@ -7,21 +7,19 @@ if (isset($_POST['themdanhmuc'])) {
     $sql_insert = mysqli_query($con, "INSERT INTO tbl_category (category_name) VALUES ('$tendanhmuc')");
 } elseif (isset($_POST['capnhatdanhmuc'])) {
     $id_post = $_POST['id_danhmuc'];
-    $tendanhmuc = $_POST['danhmuc'];
-    $sql_capnhat = mysqli_query($con, "UPDATE tbl_category SET category_name = '$tendanhmuc' WHERE category_id = '$id_post'");
+    $namedanhmuc = $_POST['name_danhmuc'];
+    $sql_capnhat = mysqli_query($con, "UPDATE tbl_category SET category_name = '$namedanhmuc' WHERE category_id = '$id_post'");
     header("location: xulydanhmuc.php");
+    exit();
 }
 if (isset($_GET['quanly'])) {
     $xoa = $_GET['quanly'];
-    // $id_delete = $_GET['id'];
+    $id_delete = $_GET['id'];
 } else {
     $xoa = '';
 }
-if ($xoa = 'xoa') {
-    if (isset($_GET['quanly'])) {
-        $id_delete = $_GET['id'];
-        $sql_delete = mysqli_query($con, "DELETE FROM tbl_category WHERE category_id = '$id_delete'");
-    }
+if ($xoa == 'xoa') {
+    $sql_delete = mysqli_query($con, "DELETE FROM tbl_category WHERE category_id = '$id_delete'");
 }
 ?>
 <!DOCTYPE html>
@@ -52,10 +50,8 @@ if ($xoa = 'xoa') {
                     <h4>Cập nhật danh mục</h4>
                     <label for="">Tên danh mục</label>
                     <form action="" method="POST">
-                        <input type="text" name="danhmuc" value="<?php echo $row_capnhat['category_name'] ?>" class="form-control" placeholder="Tên danh mục">
-
+                        <input type="text" name="name_danhmuc" class="form-control" placeholder="Tên danh mục" value="<?php echo $row_capnhat['category_name'] ?>">
                         <input type="hidden" name="id_danhmuc" value="<?php echo $row_capnhat['category_id'] ?>" class="form-control" placeholder="Tên danh mục">
-
                         <input style="margin-top: 12px;" type="submit" name="capnhatdanhmuc" class="btn btn-default" value="Cập nhật danh mục">
                     </form>
                 </div>
