@@ -80,7 +80,7 @@ label {
 /*-- top-header --*/
 
 .main-top-w3l {
-  background: #0879c9;
+  background: #ff0000;
 }
 
 .header-most-top p {
@@ -207,7 +207,7 @@ input[type="submit"] {
 
 .agileits_search button {
   border-radius: 0;
-  background: #f45c5d;
+  background: #559eff;
   color: #fff;
   width: 20%;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.22);
@@ -325,7 +325,7 @@ ul.multi-column-dropdown li a:hover {
 /*-- carousel-slider --*/
 
 .carousel-item.item1 {
-  background: url(../images/sld-2.jpg) no-repeat center;
+  background: url(../images/bannersale2.png) no-repeat center;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -364,7 +364,8 @@ ul.multi-column-dropdown li a:hover {
 .carousel-item.item3,
 .carousel-item.item2,
 .carousel-item.item1 {
-  min-height: 640px;
+  /* min-height: 640px; */
+  min-height: 455px;
 }
 
 .w3l-space-banner {
@@ -441,6 +442,7 @@ ul.multi-column-dropdown li a:hover {
 /*-- heading style --*/
 
 h3.tittle-w3l {
+  margin-top: -30px;
   color: #000;
   font-size: 38px;
   letter-spacing: 1px;
@@ -469,7 +471,7 @@ h3.tittle-w3l span {
 .snipcart-details input.button {
   font-size: 13px;
   color: #fff;
-  background: #0879c9;
+  background: #08c9be;
   text-decoration: none;
   border: none;
   border-radius: 0;
@@ -490,7 +492,7 @@ h3.tittle-w3l span {
 }
 
 .snipcart-details input.button:hover {
-  background: #000;
+  background: #ff4242;
 }
 
 .product_list_header input.button {
@@ -1271,7 +1273,7 @@ h2.footer-top-head-w3l {
 /*-- copyright --*/
 
 .copy-right {
-  background: #0879c9;
+  background: #ff0000;
 }
 
 .copy-right p {
