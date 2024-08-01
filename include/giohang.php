@@ -40,8 +40,28 @@ if (isset($_POST['btn_giohang'])) {
     $note = $_POST['note'];
     $gmail = $_POST['email'];
     $giaohang = $_POST['giaohang'];
-    $sql_thanhtoan = mysqli_query($con, "INSERT INTO tbl_khachhang (name, phone, address, note, email, giaohang ) VALUES('$name','$phone','$address','$note','$gmail','$giaohang') ");
+    $sql_khachhang = mysqli_query($con, "INSERT INTO tbl_khachhang (name, phone, address, note, email, giaohang ) VALUES('$name','$phone','$address','$note','$gmail','$giaohang') ");
+
+    if ($sql_khachhang) {
+        $sql_select_khachhang = mysqli_query($con, "SELECT tbl_khachhang ORDER BY khachhang_id DESC LIMIT 1");
+        $mahang = rand(0, 9999);
+        $row_khachhang = mysqli_fetch_array($sql_select_khachhang);
+        $khachhang_id = $row_khachhang['khachhang_id'];
+        for ($i = 0; $i < count($_POST['thanhtoan_product_id']); $i++) {
+            $sanpham_id = $_POST['thanhtoan_product_id'][$i];
+            $soluong = $_POST['thanhtoan_soluong'][$i];
+            $sql_donhang = mysqli_query($con, "INSERT INTO tbl_donhang(sanpham_id, khachhang_id, soluong, mahang) VALUES ('$sanpham_id', '$khachhang_id','$soluong', '$mahang') ");
+            $sql_delete_thanhtoan = mysqli_query($con, "DELETE tbl_giohang WHERE sanpham_id = '$sanpham_id'");
+        }
+    }
 }
+
+
+
+
+
+
+
 
 
 ?>
