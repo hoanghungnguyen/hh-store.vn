@@ -15,14 +15,34 @@ require("../db/connect.php");
 <body>
     <div class="container">
         <div class="row">
+            <?php
+            if (isset($_POST['quanly'])) {
+                $capnhat = $_POST['quanly'];
+            } else {
+                $capnhat = "";
+            }
+            if ($capnhat == 'update') {
+            ?>
+            <div class="col-md-4">
+                <h4>Cập nhật danh mục</h4>
+                <label for="">Tên danh mục</label>
+                <form action="" method="POST">
+                    <input type="text" name="danhmuc" class="form-control" placeholder="Tên danh mục">
+                    <input style="margin-top: 12px;" type="submit" name="themdanhmuc" class="btn btn-default"
+                        value="Thêm danh mục">
+                </form>
+            </div>
+            <?php } else { ?>
             <div class="col-md-4">
                 <h4>Thêm danh mục</h4>
                 <label for="">Tên danh mục</label>
                 <form action="" method="POST">
                     <input type="text" name="danhmuc" class="form-control" placeholder="Tên danh mục">
-                    <input style="margin-top: 12px;" type="submit" name="themdanhmuc" class="btn btn-default" value="Thêm danh mục">
+                    <input style="margin-top: 12px;" type="submit" name="themdanhmuc" class="btn btn-default"
+                        value="Thêm danh mục">
                 </form>
             </div>
+            <?php } ?>
             <div class="col-md-8">
                 <h4>Liệt kê danh mục</h4>
                 <?php
@@ -39,11 +59,12 @@ require("../db/connect.php");
                     while ($row_danhmuc = mysqli_fetch_array($sql_danhmuc)) {
                         $tt++;
                     ?>
-                        <tr>
-                            <td><?php echo $tt ?></td>
-                            <td><?php echo $row_danhmuc['category_name']; ?></td>
-                            <td><a href="">Xóa</a> || <a href="">Cập nhật</a></td>
-                        </tr>
+                    <tr>
+                        <td><?php echo $tt ?></td>
+                        <td><?php echo $row_danhmuc['category_name']; ?></td>
+                        <td><a href="?quanly=xoa&id=<?php echo $row_danhmuc['category_id'] ?>">Xóa</a> || <a
+                                href="?quanly=update&id=<?php echo $row_danhmuc['category_id'] ?>">Cập nhật</a></td>
+                    </tr>
                     <?php } ?>
                 </table>
             </div>
