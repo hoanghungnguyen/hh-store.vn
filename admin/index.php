@@ -37,7 +37,6 @@ if (isset($_POST['btn-login'])) {
         }
     }
 
-    //kết luận
     if (empty($error)) {
         $sql_login_admin = mysqli_query($con, "SELECT *FROM tbl_admin WHERE email = '$email' AND password = '$password' LIMIT 1");
         $count = mysqli_num_rows($sql_login_admin);
@@ -63,7 +62,7 @@ if (isset($_POST['btn-login'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <title>Admin</title>
+    <title>Đăng nhập Admin</title>
 </head>
 
 <body>
