@@ -55,15 +55,6 @@ if (isset($_POST['btn_giohang'])) {
         }
     }
 }
-
-
-
-
-
-
-
-
-
 ?>
 <div class="services-breadcrumb">
     <div class="agile_inner_breadcrumb">
