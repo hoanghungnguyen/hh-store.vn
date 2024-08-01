@@ -5,15 +5,23 @@ require("../db/connect.php");
 if (isset($_POST['themdanhmuc'])) {
     $tendanhmuc = $_POST['danhmuc'];
     $sql_insert = mysqli_query($con, "INSERT INTO tbl_category (category_name) VALUES ('$tendanhmuc')");
+} elseif (isset($_POST['capnhatdanhmuc'])) {
+    $id_post = $_POST['id_danhmuc'];
+    $tendanhmuc = $_POST['danhmuc'];
+    $sql_capnhat = mysqli_query($con, "UPDATE tbl_category SET category_name = '$tendanhmuc' WHERE category_id = '$id_post'");
+    header("location: xulydanhmuc.php");
 }
 if (isset($_GET['quanly'])) {
     $xoa = $_GET['quanly'];
-    $id = $_GET['id'];
+    // $id_delete = $_GET['id'];
 } else {
     $xoa = '';
 }
 if ($xoa = 'xoa') {
-    $sql_delete = mysqli_query($con, "DELETE FROM tbl_category WHERE category_id = '$id'");
+    if (isset($_GET['quanly'])) {
+        $id_delete = $_GET['id'];
+        $sql_delete = mysqli_query($con, "DELETE FROM tbl_category WHERE category_id = '$id_delete'");
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -32,17 +40,23 @@ if ($xoa = 'xoa') {
             <?php
             if (isset($_GET['quanly'])) {
                 $capnhat = $_GET['quanly'];
+                $id_capnhat = $_GET['id'];
             } else {
                 $capnhat = "";
             }
             if ($capnhat == 'update') {
+                $sql_update = mysqli_query($con, "SELECT * FROM tbl_category WHERE category_id = '$id_capnhat'");
+                $row_capnhat = mysqli_fetch_array($sql_update);
             ?>
                 <div class="col-md-4">
                     <h4>Cập nhật danh mục</h4>
                     <label for="">Tên danh mục</label>
                     <form action="" method="POST">
-                        <input type="text" name="danhmuc" class="form-control" placeholder="Tên danh mục">
-                        <input style="margin-top: 12px;" type="submit" name="themdanhmuc" class="btn btn-default" value="Cập nhật danh mục">
+                        <input type="text" name="danhmuc" value="<?php echo $row_capnhat['category_name'] ?>" class="form-control" placeholder="Tên danh mục">
+
+                        <input type="hidden" name="id_danhmuc" value="<?php echo $row_capnhat['category_id'] ?>" class="form-control" placeholder="Tên danh mục">
+
+                        <input style="margin-top: 12px;" type="submit" name="capnhatdanhmuc" class="btn btn-default" value="Cập nhật danh mục">
                     </form>
                 </div>
             <?php } else { ?>
