@@ -92,7 +92,7 @@ if ($xoa == 'xoa') {
                     </div> -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">Khách hàng</a>
+                    <a class="nav-link " href="xulykhachhang.php">Khách hàng</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
