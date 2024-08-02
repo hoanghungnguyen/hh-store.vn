@@ -5,22 +5,26 @@ require("../db/connect.php");
         if (isset($_POST['themdanhmuc'])) {
             $tendanhmuc = $_POST['danhmuc'];
             $sql_insert = mysqli_query($con, "INSERT INTO tbl_category (category_name) VALUES ('$tendanhmuc')");
-        } elseif (isset($_POST['capnhatdanhmuc'])) {
-            $id_post = $_POST['id_danhmuc'];
-            $namedanhmuc = $_POST['name_danhmuc'];
-            $sql_capnhat = mysqli_query($con, "UPDATE tbl_category SET category_name = '$namedanhmuc' WHERE category_id = '$id_post'");
-            header("location: xulydanhmuc.php");
-            exit();
         }
-        if (isset($_GET['quanly'])) {
-            $xoa = $_GET['quanly'];
-            $id_delete = $_GET['id'];
-        } else {
-            $xoa = '';
-        }
-        if ($xoa == 'xoa') {
-            $sql_delete = mysqli_query($con, "DELETE FROM tbl_category WHERE category_id = '$id_delete'");
-        }
+
+
+
+        // elseif (isset($_POST['capnhatdanhmuc'])) {
+        //     $id_post = $_POST['id_danhmuc'];
+        //     $namedanhmuc = $_POST['name_danhmuc'];
+        //     $sql_capnhat = mysqli_query($con, "UPDATE tbl_category SET category_name = '$namedanhmuc' WHERE category_id = '$id_post'");
+        //     header("location: xulydanhmuc.php");
+        //     exit();
+        // }
+        // if (isset($_GET['quanly'])) {
+        //     $xoa = $_GET['quanly'];
+        //     $id_delete = $_GET['id'];
+        // } else {
+        //     $xoa = '';
+        // }
+        // if ($xoa == 'xoa') {
+        //     $sql_delete = mysqli_query($con, "DELETE FROM tbl_category WHERE category_id = '$id_delete'");
+        // }
         ?>  -->
 <!DOCTYPE html>
 <html lang="en">
@@ -126,7 +130,7 @@ require("../db/connect.php");
             </div>
             <!-- <?php } ?> -->
             <div class="col-md-8">
-                <h4>Liệt kê danh mục</h4>
+                <h4>Liệt kê sản phẩm</h4>
                 <!-- <?php
                         $sql_danhmuc = mysqli_query($con, "SELECT * FROM tbl_category ORDER BY category_id ASC");
                         ?> -->
@@ -134,6 +138,11 @@ require("../db/connect.php");
                     <tr>
                         <td>Thứ tự</td>
                         <td>Tên danh mục</td>
+                        <td>Tên sản phẩm</td>
+                        <td>Hình ảnh</td>
+                        <td>Số lượng</td>
+                        <td>Giá sản phẩm</td>
+                        <td>Giá khuyến mãi</td>
                         <td>Quản lý</td>
                     </tr>
                     <!-- <?php
@@ -143,6 +152,11 @@ require("../db/connect.php");
                             ?> -->
                     <tr>
                         <td>1</td>
+                        <td>ddd</td>
+                        <td>ddd</td>
+                        <td>ddd</td>
+                        <td>ddd</td>
+                        <td>ddd</td>
                         <td>ddd</td>
                         <td><a class="btn btn-default btn-outline-success" href="">Xóa</a> || <a class="btn btn-default btn-outline-success" href="">Cập nhật</a>
                         </td>
