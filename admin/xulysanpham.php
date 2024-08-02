@@ -6,14 +6,13 @@ if (isset($_POST['themsanpham'])) {
     $danhmuc = $_POST['danhmuc'];
     $tensanpham = $_POST['tensanpham'];
     $hinhanh = $_FILES['file']['name'];
-    // $hinhanh = $_POST['file'];
     $chitiet = $_POST['chitiet'];
     $mota = $_POST['mota'];
     $gia = $_POST['giasanpham'];
     $giakhuyenmai = $_POST['giakhuyenmai'];
     $soluong = $_POST['soluong'];
     $image = $_FILES['file']['name'];
-    $path = '../upload/';
+    $path = '../uploads/';
     $image_tmp = $_FILES['file']['tmp_name'];
 
 
@@ -52,8 +51,10 @@ if (isset($_POST['themsanpham'])) {
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"><img style="height: 35px; width: 35px;" src="../images/logoshop.JPG" alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="#"><img style="height: 35px; width: 35px;" src="../images/logoshop.JPG"
+                alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -66,7 +67,8 @@ if (isset($_POST['themsanpham'])) {
                     <a class="nav-link" href="xulydanhmuc.php">Danh mục</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="xulysanpham.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="xulysanpham.php" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Sản phẩm
                     </a>
                     <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -135,25 +137,27 @@ if (isset($_POST['themsanpham'])) {
                         <?php
                         while ($row_danhmuc = mysqli_fetch_array($sql_danhmuc)) {
                         ?>
-                            <option value="<?php echo $row_danhmuc['category_id'] ?>">
-                                <?php echo $row_danhmuc['category_name'] ?></option>
+                        <option value="<?php echo $row_danhmuc['category_id'] ?>">
+                            <?php echo $row_danhmuc['category_name'] ?></option>
                         <?php } ?>
                     </select>
-                    <input style="margin-top: 15px;" type="submit" name="themsanpham" class="btn btn-default btn-outline-success " value="Thêm sản phẩm">
+                    <input style="margin-top: 15px;" type="submit" name="themsanpham"
+                        class="btn btn-default btn-outline-success " value="Thêm sản phẩm">
                 </form>
             </div>
             <!-- <?php } ?> -->
             <div class="col-md-8">
                 <h4>Liệt kê sản phẩm</h4>
-                <!-- <?php
-                        $sql_danhmuc = mysqli_query($con, "SELECT * FROM tbl_category ORDER BY category_id ASC");
-                        ?> -->
+                <?php
+                $sql_select_sp = mysqli_query($con, "SELECT * FROM tbl_sanpham,tbl_category WHERE tbl_sanpham.category_id = 
+                        tbl_category.category_id ORDER BY tbl_sanpham.sanpham_id ASC");
+                ?>
                 <table class="table table-bordered">
                     <tr>
                         <td>Thứ tự</td>
-                        <td>Tên danh mục</td>
                         <td>Tên sản phẩm</td>
                         <td>Hình ảnh</td>
+                        <td>Tên danh mục</td>
                         <td>Số lượng</td>
                         <td>Giá sản phẩm</td>
                         <td>Giá khuyến mãi</td>
@@ -161,18 +165,34 @@ if (isset($_POST['themsanpham'])) {
                     </tr>
                     <!-- <?php
                             $tt = 0;
-                            while ($row_danhmuc = mysqli_fetch_array($sql_danhmuc)) {
+                            while ($row_sp = mysqli_fetch_array($sql_select_sp)) {
                                 $tt++;
                             ?> -->
                     <tr>
-                        <td>1</td>
-                        <td>ddd</td>
-                        <td>ddd</td>
-                        <td>ddd</td>
-                        <td>ddd</td>
-                        <td>ddd</td>
-                        <td>ddd</td>
-                        <td><a class="btn btn-default btn-outline-success" href="">Xóa</a> || <a class="btn btn-default btn-outline-success" href="">Cập nhật</a>
+                        <td><?php echo $tt; ?></td>
+                        <td>
+                            <?Php echo $row_sp['sanpham_name'] ?>
+                        </td>
+                        <td>
+                            <img style="height: 80px; width: 80px"
+                                src="../uploads/<?Php echo $row_sp['sanpham_image'] ?>" alt="">
+                        </td>
+                        <td>
+                            <?Php echo $row_sp['category_name'] ?>
+                        </td>
+                        <td>
+                            <?Php echo $row_sp['sanpham_soluong'] ?>
+                        </td>
+                        <td>
+                            <?Php echo number_format($row_sp['sanpham_gia']). 'vnđ' ?>
+                        </td>
+                        <td>
+                            <?Php echo number_format($row_sp['sanpham_giakhuyenmai']) . 'vnđ' ?>
+                        </td>
+                        <td><a class="btn btn-default btn-outline-success"
+                                href="?quanly=xoa&id=<?php echo $row_sp['sanpham_id'] ?>">Xóa</a> ||
+                            <a class="btn btn-default btn-outline-success"
+                                href="?quanly=update&id=<?php echo $row_sp['sanpham_id'] ?>">Cập nhật</a>
                         </td>
                     </tr>
                     <!-- <?php } ?> -->
