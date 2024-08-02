@@ -12,7 +12,7 @@ if (isset($_POST['themsanpham'])) {
     $giakhuyenmai = $_POST['giakhuyenmai'];
     $soluong = $_POST['soluong'];
     // $image = $_FILES['file']['name'];
-    $path = '../uploads/';
+    $path = '../images/';
     $image_tmp = $_FILES['file']['tmp_name'];
 
     $sql_themsanpham = mysqli_query($con, "INSERT INTO tbl_sanpham (category_id, sanpham_name, sanpham_chitiet, 
@@ -29,7 +29,7 @@ if (isset($_POST['themsanpham'])) {
     $gia = $_POST['giasanpham'];
     $giakhuyenmai = $_POST['giakhuyenmai'];
     $soluong = $_POST['soluong'];
-    $path = '../uploads/';
+    $path = '../images/';
     $image_tmp = $_FILES['file']['tmp_name'];
     if ($hinhanh == '') {
         $sql_update_img = "UPDATE tbl_sanpham SET category_id='$danhmuc', sanpham_name='$tensanpham',sanpham_chitiet='$chitiet',sanpham_mota='$mota',
@@ -120,7 +120,7 @@ if ($xoa == 'xoa') {
                         <input type="hidden" name="id_update" value="<?php echo $row_capnhat_sp['sanpham_id'] ?>">
                         <label for="">Hình ảnh</label>
                         <input type="file" name="file" class="form-control">
-                        <img style="height: 80px; width: 80px" src="../uploads/<?php echo $row_capnhat_sp['sanpham_image'] ?>" alt=""><br>
+                        <img style="height: 80px; width: 80px" src="../images/<?php echo $row_capnhat_sp['sanpham_image'] ?>" alt=""><br>
                         <label for="">Giá</label>
                         <input type="text" name="giasanpham" class="form-control" value="<?php echo $row_capnhat_sp['sanpham_gia'] ?>">
                         <label for="">Giá khuyến mãi</label>
@@ -219,7 +219,7 @@ if ($xoa == 'xoa') {
                             <?Php echo $row_sp['sanpham_name'] ?>
                         </td>
                         <td>
-                            <img style="height: 80px; width: 80px" src="../uploads/<?Php echo $row_sp['sanpham_image'] ?>" alt="">
+                            <img style="height: 80px; width: 80px" src="../images/<?Php echo $row_sp['sanpham_image'] ?>" alt="">
                         </td>
                         <td>
                             <?Php echo $row_sp['category_name'] ?>
