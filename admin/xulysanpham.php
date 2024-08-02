@@ -13,11 +13,10 @@ require("../db/connect.php");
             $soluong = $_POST['soluong'];
             $path = '../uploads/';
             $hinhanh_tmp = $_FILES['hinhanh']['tmp_name'];
+            move_uploaded_file($hinhanh_tmp, $path . $hinhanh);
             $sql_themsanpham = mysqli_query($con, "INSERT INTO tbl_sanpham (category_id, sanpham_name, sanpham_chitiet, 
             sanpham_mota, sanpham_gia, sanpham_giakhuyenmai, sanpham_soluong, sanpham_image ) VALUES 
             ('$danhmuc','$tensanpham','$chitiet','$mota','$gia','$giakhuyenmai','$soluong','$hinhanh')");
-
-            move_uploaded_file($hinhanh_tmp, $path . $hinhanh);
         }
         // elseif (isset($_POST['capnhatdanhmuc'])) {
         //     $id_post = $_POST['id_danhmuc'];
