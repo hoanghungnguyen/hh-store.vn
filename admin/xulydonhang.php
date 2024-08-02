@@ -14,12 +14,12 @@ require("../db/connect.php");
 // }
 if (isset($_GET['quanly'])) {
     $xoa = $_GET['quanly'];
-    $id_delete_donhang = $_GET['id'];
+    $delete = $_GET['id'];
 } else {
     $xoa = '';
 }
-if ($xoa == 'xoa') {
-    $sql_delete = mysqli_query($con, "DELETE FROM tbl_donhang WHERE donhang_id = '$id_delete_donhang'");
+if ($xoa == 'delete') {
+    $sql_delete = mysqli_query($con, "DELETE FROM tbl_donhang WHERE donhang_id = '$delete'");
 }
 ?>
 <!DOCTYPE html>
@@ -78,12 +78,41 @@ if ($xoa == 'xoa') {
                 $capnhat = "";
             }
             if ($capnhat == 'xemdonhang') {
-                // $sql_order = mysqli_query($con, "SELECT * FROM tbl_donhang WHERE mahang = '$mahang'");
-                // $row_order = mysqli_fetch_array($sql_order);
-
+                $sql_order = mysqli_query($con, "SELECT * FROM tbl_donhang, tbl_sanpham WHERE tbl_donhang.sanpham_id = tbl_sanpham.sanpham_id
+                AND tbl_donhang.mahang = '$mahang'");
             ?>
-                <p>xem chi tiết đơn hàng</p>
-
+                <div class="col-md-7">
+                    <p>xem chi tiết đơn hàng</p>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Thứ tự</td>
+                            <td>Mã hàng</td>
+                            <td>Tên sản phẩm</td>
+                            <td>Số lương</td>
+                            <td>Giá</td>
+                            <td>Tổng tiền</td>
+                            <td>Ngày đặt</td>
+                            <td>Quản lý</td>
+                        </tr>
+                        <?php
+                        $tt = 0;
+                        while ($row_donhang = mysqli_fetch_array($sql_order)) {
+                            $tt++;
+                        ?>
+                            <tr>
+                                <td><?php echo $tt ?></td>
+                                <td><?php echo $row_donhang['mahang']; ?></td>
+                                <td><?php echo $row_donhang['sanpham_name']; ?></td>
+                                <td><?php echo $row_donhang['soluong']; ?></td>
+                                <td><?php echo $row_donhang['sanpham_gia']; ?></td>
+                                <td><?php echo number_format($row_donhang['soluong'] * $row_donhang['soluong']); ?></td>
+                                <td><?php echo $row_donhang['ngaythang']; ?></td>
+                                <!-- <td><a class="btn btn-default btn-outline-success" href="?quanly=xoa&id=<?php echo $row_donhang['donhang_id'] ?>">Xóa</a>
+                                    || <a class="btn btn-default btn-outline-success" href="?quanly=xemdonhang&mahang=<?php echo $row_donhang['mahang'] ?>">Cập nhật</a></td> -->
+                            </tr>
+                        <?php } ?>
+                    </table>
+                </div>
             <?php } else { ?>
                 <p>đơn hàng</p>
                 <!-- <div class="col-md-4">
@@ -95,7 +124,7 @@ if ($xoa == 'xoa') {
                     </form>
                 </div> -->
             <?php } ?>
-            <div class="col-md-8">
+            <div class="col-md-5">
                 <h4>Liệt kê đơn hàng</h4>
                 <?php
                 $sql_donhang = mysqli_query($con, "SELECT * FROM tbl_sanpham,tbl_khachhang,tbl_donhang
@@ -119,8 +148,9 @@ if ($xoa == 'xoa') {
                             <td><?php echo $row_donhang['mahang']; ?></td>
                             <td><?php echo $row_donhang['name']; ?></td>
                             <td><?php echo $row_donhang['ngaythang']; ?></td>
-                            <td><a class="btn btn-default btn-outline-success" href="?quanly=xoa&id=<?php echo $row_donhang['donhang_id'] ?>">Xóa</a>
-                                || <a class="btn btn-default btn-outline-success" href="?quanly=xemdonhang&mahang=<?php echo $row_donhang['mahang'] ?>">Cập nhật</a></td>
+                            <td><a class="btn btn-default btn-outline-success" href="?quanly=delete&id=<?php echo $row_donhang['donhang_id'] ?>">Xóa</a>
+                                || <a class="btn btn-default btn-outline-success" href="?quanly=xemdonhang&mahang=<?php echo $row_donhang['mahang'] ?>">Xem chi tiết</a>
+                            </td>
                         </tr>
                     <?php } ?>
                 </table>
