@@ -2,13 +2,23 @@
 require("../db/connect.php");
 ?>
 <!-- <?php
-        if (isset($_POST['themdanhmuc'])) {
-            $tendanhmuc = $_POST['danhmuc'];
-            $sql_insert = mysqli_query($con, "INSERT INTO tbl_category (category_name) VALUES ('$tendanhmuc')");
+        if (isset($_POST['themsanpham'])) {
+            $danhmuc = $_POST['danhmuc'];
+            $tensanpham = $_POST['tensanpham'];
+            $hinhanh = $_FILES['hinhanh']['name'];
+            $chitiet = $_POST['chitiet'];
+            $mota = $_POST['mota'];
+            $gia = $_POST['giasanpham'];
+            $giakhuyenmai = $_POST['giakhuyenmai'];
+            $soluong = $_POST['soluong'];
+            $path = '../uploads/';
+            $hinhanh_tmp = $_FILES['hinhanh']['tmp_name'];
+            $sql_themsanpham = mysqli_query($con, "INSERT INTO tbl_sanpham (category_id, sanpham_name, sanpham_chitiet, 
+            sanpham_mota, sanpham_gia, sanpham_giakhuyenmai, sanpham_soluong, sanpham_image ) VALUES 
+            ('$danhmuc','$tensanpham','$chitiet','$mota','$gia','$giakhuyenmai','$soluong','$hinhanh')");
+
+            move_uploaded_file($hinhanh_tmp, $path . $hinhanh);
         }
-
-
-
         // elseif (isset($_POST['capnhatdanhmuc'])) {
         //     $id_post = $_POST['id_danhmuc'];
         //     $namedanhmuc = $_POST['name_danhmuc'];
@@ -125,7 +135,7 @@ require("../db/connect.php");
                                 <?php echo $row_danhmuc['category_name'] ?></option>
                         <?php } ?>
                     </select>
-                    <input style="margin-top: 15px;" type="submit" name="themdanhmuc" class="btn btn-default btn-outline-success " value="Thêm danh mục">
+                    <input style="margin-top: 15px;" type="submit" name="themsanpham" class="btn btn-default btn-outline-success " value="Thêm sản phẩm">
                 </form>
             </div>
             <!-- <?php } ?> -->
