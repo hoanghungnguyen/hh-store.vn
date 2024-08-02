@@ -90,27 +90,64 @@ if ($xoa == 'xoa') {
     </nav>
     <div style="margin-top: 38px;" class="container">
         <div class="row">
-            <!-- <?php
-                    if (isset($_GET['quanly'])) {
-                        $capnhat = $_GET['quanly'];
-                        $id_capnhat = $_GET['id'];
-                    } else {
-                        $capnhat = "";
-                    }
-                    if ($capnhat == 'update') {
-                        $sql_update = mysqli_query($con, "SELECT * FROM tbl_category WHERE category_id = '$id_capnhat'");
-                        $row_capnhat = mysqli_fetch_array($sql_update);
-                    ?> -->
+            <?php
+            if (isset($_GET['quanly'])) {
+                $capnhat_sp = $_GET['quanly'];
+                $id_capnhat_sp = $_GET['id'];
+            } else {
+                $capnhat_sp = "";
+            }
+            if ($capnhat_sp == 'update') {
+                $sql_update_sp = mysqli_query($con, "SELECT * FROM tbl_sanpham WHERE sanpham_id = '$id_capnhat_sp'");
+                $row_capnhat_sp = mysqli_fetch_array($sql_update_sp);
+                $row_sp_id = $row_capnhat_sp['category_id'];
+            ?>
             <div class="col-md-4">
                 <h4>Cập nhật sản phẩm</h4>
-                <label for="">Tên sản phẩm</label>
-                <form action="" method="POST">
-                    <input type="text" name="name_danhmuc" class="form-control" placeholder="Tên danh mục"
-                        value="<?php echo $row_capnhat['category_name'] ?>">
-                    <input type="hidden" name="id_danhmuc" value="<?php echo $row_capnhat['category_id'] ?>"
-                        class="form-control" placeholder="Tên danh mục">
-                    <input style="margin-top: 12px;" type="submit" name="capnhatdanhmuc"
-                        class="btn btn-default btn-outline-success" value="Cập nhật danh mục">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <label for="">Tên sản phẩm</label>
+                    <input type="text" name="tensanpham" class="form-control"
+                        value="<?php echo $row_capnhat_sp['sanpham_name'] ?>">
+                    <label for="">Hình ảnh</label>
+                    <input type="file" name="file" class="form-control">
+                    <label for="">Giá</label>
+                    <input type="text" name="giasanpham" class="form-control"
+                        value="<?php echo $row_capnhat_sp['sanpham_gia'] ?>">
+                    <label for="">Giá khuyến mãi</label>
+                    <input type="text" name="giakhuyenmai" class="form-control"
+                        value="<?php echo $row_capnhat_sp['sanpham_giakhuyenmai'] ?>">
+                    <label for="">Số lương</label>
+                    <input type="text" name="soluong" class="form-control"
+                        value="<?php echo $row_capnhat_sp['sanpham_soluong'] ?>">
+                    <label for="">Mô tả</label>
+                    <textarea name="mota" class="form-control"><?php echo $row_capnhat_sp['sanpham_mota'] ?></textarea>
+                    <label for="">Chi tiết</label>
+                    <textarea name="chitiet"
+                        class="form-control"><?php echo $row_capnhat_sp['sanpham_chitiet'] ?></textarea>
+                    <label for="">Danh mục</label>
+                    <?php
+                        $sql_danhmuc = mysqli_query($con, "SELECT * FROM tbl_category ORDER BY category_id ASC");
+                        ?>
+                    <select name="danhmuc" class="form-control">
+                        <option value="0">---Chọn danh mục---</option>
+                        <?php
+                            while ($row_danhmuc = mysqli_fetch_array($sql_danhmuc)) {
+                                if ($row_sp_id == $row_danhmuc['category_id']) {
+                            ?>
+                        <option selected value="<?php echo $row_danhmuc['category_id'] ?>">
+                            <?php echo $row_danhmuc['category_name'] ?></option>
+                        <?php
+                                } else {
+                                ?>
+                        <option value="<?php echo $row_danhmuc['category_id'] ?>">
+                            <?php echo $row_danhmuc['category_name'] ?></option>
+                        <?php
+                                }
+                            }
+                            ?>
+                    </select>
+                    <input style="margin-top: 15px;" type="submit" name="capnhatsanpham"
+                        class="btn btn-default btn-outline-success " value="Cập nhật sản phẩm">
                 </form>
             </div>
             <?php } else { ?>
@@ -134,12 +171,12 @@ if ($xoa == 'xoa') {
                     <label for="">Danh mục</label>
                     <?php
                         $sql_danhmuc = mysqli_query($con, "SELECT * FROM tbl_category ORDER BY category_id ASC");
-                    ?>
+                        ?>
                     <select name="danhmuc" class="form-control">
                         <option value="0">---Chọn danh mục---</option>
                         <?php
-                        while ($row_danhmuc = mysqli_fetch_array($sql_danhmuc)) {
-                        ?>
+                            while ($row_danhmuc = mysqli_fetch_array($sql_danhmuc)) {
+                            ?>
                         <option value="<?php echo $row_danhmuc['category_id'] ?>">
                             <?php echo $row_danhmuc['category_name'] ?></option>
                         <?php } ?>
@@ -148,7 +185,7 @@ if ($xoa == 'xoa') {
                         class="btn btn-default btn-outline-success " value="Thêm sản phẩm">
                 </form>
             </div>
-            <!-- <?php } ?> -->
+            <?php } ?>
             <div class="col-md-8">
                 <h4>Liệt kê sản phẩm</h4>
                 <?php
