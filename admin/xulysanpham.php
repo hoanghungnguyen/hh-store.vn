@@ -28,15 +28,15 @@ if (isset($_POST['themsanpham'])) {
 //     header("location: xulydanhmuc.php");
 //     exit();
 // }
-// if (isset($_GET['quanly'])) {
-//     $xoa = $_GET['quanly'];
-//     $id_delete = $_GET['id'];
-// } else {
-//     $xoa = '';
-// }
-// if ($xoa == 'xoa') {
-//     $sql_delete = mysqli_query($con, "DELETE FROM tbl_category WHERE category_id = '$id_delete'");
-// }
+if (isset($_GET['quanly'])) {
+    $xoa = $_GET['quanly'];
+    $id_delete = $_GET['id'];
+} else {
+    $xoa = '';
+}
+if ($xoa == 'xoa') {
+    $sql_delete = mysqli_query($con, "DELETE FROM tbl_sanpham WHERE sanpham_id = '$id_delete'");
+}
 
 ?>
 <!DOCTYPE html>
@@ -101,16 +101,19 @@ if (isset($_POST['themsanpham'])) {
                         $sql_update = mysqli_query($con, "SELECT * FROM tbl_category WHERE category_id = '$id_capnhat'");
                         $row_capnhat = mysqli_fetch_array($sql_update);
                     ?> -->
-            <!-- <div class="col-md-4">
-                    <h4>Cập nhật danh mục</h4>
-                    <label for="">Tên danh mục</label>
-                    <form action="" method="POST">
-                        <input type="text" name="name_danhmuc" class="form-control" placeholder="Tên danh mục" value="<?php echo $row_capnhat['category_name'] ?>">
-                        <input type="hidden" name="id_danhmuc" value="<?php echo $row_capnhat['category_id'] ?>" class="form-control" placeholder="Tên danh mục">
-                        <input style="margin-top: 12px;" type="submit" name="capnhatdanhmuc" class="btn btn-default btn-outline-success" value="Cập nhật danh mục">
-                    </form>
-                </div>
-            <?php } else { ?> -->
+            <div class="col-md-4">
+                <h4>Cập nhật sản phẩm</h4>
+                <label for="">Tên sản phẩm</label>
+                <form action="" method="POST">
+                    <input type="text" name="name_danhmuc" class="form-control" placeholder="Tên danh mục"
+                        value="<?php echo $row_capnhat['category_name'] ?>">
+                    <input type="hidden" name="id_danhmuc" value="<?php echo $row_capnhat['category_id'] ?>"
+                        class="form-control" placeholder="Tên danh mục">
+                    <input style="margin-top: 12px;" type="submit" name="capnhatdanhmuc"
+                        class="btn btn-default btn-outline-success" value="Cập nhật danh mục">
+                </form>
+            </div>
+            <?php } else { ?>
             <div class="col-md-4">
                 <h4>Thêm sản phẩm</h4>
                 <form action="" method="POST" enctype="multipart/form-data">
@@ -184,13 +187,13 @@ if (isset($_POST['themsanpham'])) {
                             <?Php echo $row_sp['sanpham_soluong'] ?>
                         </td>
                         <td>
-                            <?Php echo number_format($row_sp['sanpham_gia']). 'vnđ' ?>
+                            <?Php echo number_format($row_sp['sanpham_gia']) . 'vnđ' ?>
                         </td>
                         <td>
                             <?Php echo number_format($row_sp['sanpham_giakhuyenmai']) . 'vnđ' ?>
                         </td>
                         <td><a class="btn btn-default btn-outline-success"
-                                href="?quanly=xoa&id=<?php echo $row_sp['sanpham_id'] ?>">Xóa</a> ||
+                                href="?quanly=xoa&id=<?php echo $row_sp['sanpham_id'] ?>">Xóa</a>
                             <a class="btn btn-default btn-outline-success"
                                 href="?quanly=update&id=<?php echo $row_sp['sanpham_id'] ?>">Cập nhật</a>
                         </td>
