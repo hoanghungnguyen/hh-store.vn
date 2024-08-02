@@ -14,12 +14,12 @@ require("../db/connect.php");
 // }
 if (isset($_GET['quanly'])) {
     $xoa = $_GET['quanly'];
-    $id_delete = $_GET['id'];
+    $id_delete_donhang = $_GET['id'];
 } else {
     $xoa = '';
 }
 if ($xoa == 'xoa') {
-    $sql_delete = mysqli_query($con, "DELETE FROM tbl_category WHERE category_id = '$id_delete'");
+    $sql_delete = mysqli_query($con, "DELETE FROM tbl_donhang WHERE donhang_id = '$id_delete_donhang'");
 }
 ?>
 <!DOCTYPE html>
@@ -34,8 +34,10 @@ if ($xoa == 'xoa') {
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"><img style="height: 35px; width: 35px;" src="../images/logoshop.JPG" alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="#"><img style="height: 35px; width: 35px;" src="../images/logoshop.JPG"
+                alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -48,7 +50,8 @@ if ($xoa == 'xoa') {
                     <a class="nav-link" href="xulydanhmuc.php">Danh mục</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="xulysanpham.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="xulysanpham.php" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Sản phẩm
                     </a>
                     <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -113,16 +116,18 @@ if ($xoa == 'xoa') {
                     while ($row_donhang = mysqli_fetch_array($sql_donhang)) {
                         $tt++;
                     ?>
-                        <tr>
-                            <td><?php echo $tt ?></td>
-                            <td><?php echo $row_donhang['sanpham_name']; ?></td>
-                            <td><?php echo $row_donhang['soluong']; ?></td>
-                            <td><?php echo $row_donhang['mahang']; ?></td>
-                            <td><?php echo $row_donhang['name']; ?></td>
-                            <td><?php echo $row_donhang['ngaythang']; ?></td>
-                            <td><a class="btn btn-default btn-outline-success" href="?quanly=xoa&id=<?php echo $row_donhang['donhang_id'] ?>">Xóa</a>
-                                || <a class="btn btn-default btn-outline-success" href="?quanly=update&id=<?php echo $row_danhmuc['donhang_id'] ?>">Cập nhật</a></td>
-                        </tr>
+                    <tr>
+                        <td><?php echo $tt ?></td>
+                        <td><?php echo $row_donhang['sanpham_name']; ?></td>
+                        <td><?php echo $row_donhang['soluong']; ?></td>
+                        <td><?php echo $row_donhang['mahang']; ?></td>
+                        <td><?php echo $row_donhang['name']; ?></td>
+                        <td><?php echo $row_donhang['ngaythang']; ?></td>
+                        <td><a class="btn btn-default btn-outline-success"
+                                href="?quanly=xoa&id=<?php echo $row_donhang['donhang_id'] ?>">Xóa</a>
+                            || <a class="btn btn-default btn-outline-success"
+                                href="?quanly=update&id=<?php echo $row_danhmuc['donhang_id'] ?>">Cập nhật</a></td>
+                    </tr>
                     <?php } ?>
                 </table>
             </div>
