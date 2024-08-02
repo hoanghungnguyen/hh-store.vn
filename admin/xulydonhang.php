@@ -88,36 +88,44 @@ if ($xoa == 'delete' && !empty($delete)) {
             ?>
             <div class="col-md-7">
                 <p>xem chi tiết đơn hàng</p>
-                <table class="table table-bordered">
-                    <tr>
-                        <td>Thứ tự</td>
-                        <td>Mã hàng</td>
-                        <td>Tên sản phẩm</td>
-                        <td>Số lương</td>
-                        <td>Giá</td>
-                        <td>Tổng tiền</td>
-                        <td>Ngày đặt</td>
-                        <td>Quản lý</td>
-                    </tr>
-                    <?php
-                        $tt = 0;
-                        while ($row_donhang = mysqli_fetch_array($sql_order)) {
-                            $tt++;
-                        ?>
-                    <tr>
-                        <td><?php echo $tt ?></td>
-                        <td><?php echo $row_donhang['mahang']; ?></td>
-                        <td><?php echo $row_donhang['sanpham_name']; ?></td>
-                        <td><?php echo $row_donhang['soluong']; ?></td>
-                        <td><?php echo $row_donhang['sanpham_gia']; ?></td>
-                        <td><?php echo number_format($row_donhang['soluong'] * $row_donhang['soluong']); ?></td>
-                        <td><?php echo $row_donhang['ngaythang']; ?></td>
-                        <!-- <td><a class="btn btn-default btn-outline-success" href="?quanly=xoa&id=<?php echo $row_donhang['donhang_id'] ?>">Xóa</a>
+                <form action="" method="POST">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Thứ tự</td>
+                            <td>Mã hàng</td>
+                            <td>Tên sản phẩm</td>
+                            <td>Số lương</td>
+                            <td>Giá</td>
+                            <td>Tổng tiền</td>
+                            <td>Ngày đặt</td>
+                            <td>Quản lý</td>
+                        </tr>
+                        <?php
+                            $tt = 0;
+                            while ($row_donhang = mysqli_fetch_array($sql_order)) {
+                                $tt++;
+                            ?>
+                        <tr>
+                            <td><?php echo $tt ?></td>
+                            <td><?php echo $row_donhang['mahang']; ?></td>
+                            <td><?php echo $row_donhang['sanpham_name']; ?></td>
+                            <td><?php echo $row_donhang['soluong']; ?></td>
+                            <td><?php echo $row_donhang['sanpham_gia']; ?></td>
+                            <td><?php echo number_format($row_donhang['soluong'] * $row_donhang['soluong']); ?></td>
+                            <td><?php echo $row_donhang['ngaythang']; ?></td>
+                            <!-- <td><a class="btn btn-default btn-outline-success" href="?quanly=xoa&id=<?php echo $row_donhang['donhang_id'] ?>">Xóa</a>
                                     || <a class="btn btn-default btn-outline-success" href="?quanly=xemdonhang&mahang=<?php echo $row_donhang['mahang'] ?>">Cập nhật</a></td> -->
-                    </tr>
-                    <?php } ?>
-                </table>
+                        </tr>
+                        <?php } ?>
+                    </table>
+                    <select class="form-control">
+                        <option value="1">Đã xử lý</option>
+                        <option value="0">Chưa xử lý</option>
+                    </select><br>
+                    <input type="submit" name="capnhatdonhang" value="Cập nhật đơn hàng"
+                        class="btn btn-default btn-outline-success">
             </div>
+            </form>
             <?php } else { ?>
             <p>đơn hàng</p>
             <!-- <div class="col-md-4">
@@ -139,6 +147,7 @@ if ($xoa == 'delete' && !empty($delete)) {
                     <tr>
                         <td>Thứ tự</td>
                         <td>Mã hàng</td>
+                        <td>Tình trạng</td>
                         <td>Tên khách hàng</td>
                         <td>Ngày đặt</td>
                         <td>Quản lý</td>
@@ -151,6 +160,7 @@ if ($xoa == 'delete' && !empty($delete)) {
                     <tr>
                         <td><?php echo $tt ?></td>
                         <td><?php echo $row_donhang['mahang']; ?></td>
+                        <td>Đã xử lý</td>
                         <td><?php echo $row_donhang['name']; ?></td>
                         <td><?php echo $row_donhang['ngaythang']; ?></td>
                         <td><a class="btn btn-default btn-outline-success"
