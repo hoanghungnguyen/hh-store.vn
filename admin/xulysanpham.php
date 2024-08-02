@@ -1,40 +1,45 @@
 <?php
 require("../db/connect.php");
 ?>
-<!-- <?php
-        if (isset($_POST['themsanpham'])) {
-            $danhmuc = $_POST['danhmuc'];
-            $tensanpham = $_POST['tensanpham'];
-            $hinhanh = $_FILES['hinhanh']['name'];
-            $chitiet = $_POST['chitiet'];
-            $mota = $_POST['mota'];
-            $gia = $_POST['giasanpham'];
-            $giakhuyenmai = $_POST['giakhuyenmai'];
-            $soluong = $_POST['soluong'];
-            $path = '../uploads/';
-            $hinhanh_tmp = $_FILES['hinhanh']['tmp_name'];
-            move_uploaded_file($hinhanh_tmp, $path . $hinhanh);
-            $sql_themsanpham = mysqli_query($con, "INSERT INTO tbl_sanpham (category_id, sanpham_name, sanpham_chitiet, 
+<?php
+if (isset($_POST['themsanpham'])) {
+    $danhmuc = $_POST['danhmuc'];
+    $tensanpham = $_POST['tensanpham'];
+    $hinhanh = $_FILES['file']['name'];
+    // $hinhanh = $_POST['file'];
+    $chitiet = $_POST['chitiet'];
+    $mota = $_POST['mota'];
+    $gia = $_POST['giasanpham'];
+    $giakhuyenmai = $_POST['giakhuyenmai'];
+    $soluong = $_POST['soluong'];
+    $image = $_FILES['file']['name'];
+    $path = '../upload/';
+    $image_tmp = $_FILES['file']['tmp_name'];
+
+
+    $sql_themsanpham = mysqli_query($con, "INSERT INTO tbl_sanpham (category_id, sanpham_name, sanpham_chitiet, 
             sanpham_mota, sanpham_gia, sanpham_giakhuyenmai, sanpham_soluong, sanpham_image ) VALUES 
             ('$danhmuc','$tensanpham','$chitiet','$mota','$gia','$giakhuyenmai','$soluong','$hinhanh')");
-        }
-        // elseif (isset($_POST['capnhatdanhmuc'])) {
-        //     $id_post = $_POST['id_danhmuc'];
-        //     $namedanhmuc = $_POST['name_danhmuc'];
-        //     $sql_capnhat = mysqli_query($con, "UPDATE tbl_category SET category_name = '$namedanhmuc' WHERE category_id = '$id_post'");
-        //     header("location: xulydanhmuc.php");
-        //     exit();
-        // }
-        // if (isset($_GET['quanly'])) {
-        //     $xoa = $_GET['quanly'];
-        //     $id_delete = $_GET['id'];
-        // } else {
-        //     $xoa = '';
-        // }
-        // if ($xoa == 'xoa') {
-        //     $sql_delete = mysqli_query($con, "DELETE FROM tbl_category WHERE category_id = '$id_delete'");
-        // }
-        ?>  -->
+    move_uploaded_file($image_tmp, $path . $image);
+}
+// elseif (isset($_POST['capnhatdanhmuc'])) {
+//     $id_post = $_POST['id_danhmuc'];
+//     $namedanhmuc = $_POST['name_danhmuc'];
+//     $sql_capnhat = mysqli_query($con, "UPDATE tbl_category SET category_name = '$namedanhmuc' WHERE category_id = '$id_post'");
+//     header("location: xulydanhmuc.php");
+//     exit();
+// }
+// if (isset($_GET['quanly'])) {
+//     $xoa = $_GET['quanly'];
+//     $id_delete = $_GET['id'];
+// } else {
+//     $xoa = '';
+// }
+// if ($xoa == 'xoa') {
+//     $sql_delete = mysqli_query($con, "DELETE FROM tbl_category WHERE category_id = '$id_delete'");
+// }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -106,11 +111,11 @@ require("../db/connect.php");
             <?php } else { ?> -->
             <div class="col-md-4">
                 <h4>Thêm sản phẩm</h4>
-                <form action="" method="POST">
+                <form action="" method="POST" enctype="multipart/form-data">
                     <label for="">Tên sản phẩm</label>
                     <input type="text" name="tensanpham" class="form-control" placeholder="Tên sản phẩm">
                     <label for="">Hình ảnh</label>
-                    <input type="file" name="hinhanh" class="form-control">
+                    <input type="file" name="file" class="form-control">
                     <label for="">Giá</label>
                     <input type="text" name="giasanpham" class="form-control" placeholder="Giá">
                     <label for="">Giá khuyến mãi</label>
