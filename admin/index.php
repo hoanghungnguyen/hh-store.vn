@@ -72,12 +72,15 @@ if (isset($_POST['btn-login'])) {
             <form action="" method="POST">
                 <label for="">Tài khoản</label>
                 <?php $email = isset($_POST['email']) ? $_POST['email'] : ''; ?>
-                <input type="text" name="email" placeholder="Vui lòng nhập gmail" class="form-control" value="<?php if (!empty('email')) echo $email; ?>">
+                <input style="width: 230px;" type="text" name="email" placeholder="Vui lòng nhập gmail"
+                    class="form-control" value="<?php if (!empty('email')) echo $email; ?>">
                 <p class="error"><?php if (!empty($error['email'])) echo $error['email'] ?></p>
                 <label for="">Mật khẩu</label>
-                <input type="password" name="password" placeholder="Nhập mật khẩu" class="form-control">
+                <input style="width: 230px;" type="password" name="password" placeholder="Nhập mật khẩu"
+                    class="form-control">
                 <p class="error"><?php if (!empty($error['password'])) echo $error['password'] ?></p>
-                <input style="margin-top: 18px;" type="submit" name="btn-login" class="btn btn-primary" value="Đăng nhập Admin">
+                <input style="margin-top: 10px;" type="submit" name="btn-login" class="btn btn-primary"
+                    value="Đăng nhập">
             </form>
         </div>
     </div>

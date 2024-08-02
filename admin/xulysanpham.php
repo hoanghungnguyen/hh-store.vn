@@ -34,10 +34,8 @@ require("../db/connect.php");
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"><img style="height: 35px; width: 35px;" src="../images/logoshop.JPG"
-                alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="#"><img style="height: 35px; width: 35px;" src="../images/logoshop.JPG" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -50,8 +48,7 @@ require("../db/connect.php");
                     <a class="nav-link" href="xulydanhmuc.php">Danh mục</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="xulysanpham.php" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="xulysanpham.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Sản phẩm
                     </a>
                     <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -96,11 +93,35 @@ require("../db/connect.php");
             <?php } else { ?> -->
             <div class="col-md-4">
                 <h4>Thêm sản phẩm</h4>
-                <label for="">Tên sản phẩm</label>
                 <form action="" method="POST">
-                    <input type="text" name="danhmuc" class="form-control" placeholder="Tên danh mục">
-                    <input style="margin-top: 12px;" type="submit" name="themdanhmuc"
-                        class="btn btn-default btn-outline-success " value="Thêm danh mục">
+                    <label for="">Tên sản phẩm</label>
+                    <input type="text" name="tensanpham" class="form-control" placeholder="Tên sản phẩm">
+                    <label for="">Hình ảnh</label>
+                    <input type="file" name="hinhanh" class="form-control">
+                    <label for="">Giá</label>
+                    <input type="text" name="giasanpham" class="form-control" placeholder="Giá">
+                    <label for="">Giá khuyến mãi</label>
+                    <input type="text" name="giakhuyenmai" class="form-control" placeholder="Giá Khuyến mãi">
+                    <label for="">Số lương</label>
+                    <input type="text" name="soluong" class="form-control" placeholder="Số lượng">
+                    <label for="">Mô tả</label>
+                    <textarea name="mota" class="form-control"></textarea>
+                    <label for="">Chi tiết</label>
+                    <textarea name="chitiet" class="form-control"></textarea>
+                    <label for="">Danh mục</label>
+                    <?php
+                        $sql_danhmuc = mysqli_query($con, "SELECT * FROM tbl_category ORDER BY category_id ASC");
+                    ?>
+                    <select name="danhmuc" class="form-control">
+                        <option value="0">---Chọn danh mục---</option>
+                        <?php
+                        while ($row_danhmuc = mysqli_fetch_array($sql_danhmuc)) {
+                        ?>
+                            <option value="<?php echo $row_danhmuc['category_id'] ?>">
+                                <?php echo $row_danhmuc['category_name'] ?></option>
+                        <?php } ?>
+                    </select>
+                    <input style="margin-top: 15px;" type="submit" name="themdanhmuc" class="btn btn-default btn-outline-success " value="Thêm danh mục">
                 </form>
             </div>
             <!-- <?php } ?> -->
@@ -123,8 +144,7 @@ require("../db/connect.php");
                     <tr>
                         <td>1</td>
                         <td>ddd</td>
-                        <td><a class="btn btn-default btn-outline-success" href="">Xóa</a> || <a
-                                class="btn btn-default btn-outline-success" href="">Cập nhật</a>
+                        <td><a class="btn btn-default btn-outline-success" href="">Xóa</a> || <a class="btn btn-default btn-outline-success" href="">Cập nhật</a>
                         </td>
                     </tr>
                     <!-- <?php } ?> -->
