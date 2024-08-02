@@ -34,10 +34,8 @@ if ($xoa == 'xoa') {
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"><img style="height: 35px; width: 35px;" src="../images/logoshop.JPG"
-                alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="#"><img style="height: 35px; width: 35px;" src="../images/logoshop.JPG" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -50,8 +48,7 @@ if ($xoa == 'xoa') {
                     <a class="nav-link" href="xulydanhmuc.php">Danh mục</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="xulysanpham.php" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="xulysanpham.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Sản phẩm
                     </a>
                     <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -73,20 +70,23 @@ if ($xoa == 'xoa') {
     </nav>
     <div style="margin-top: 38px;" class="container">
         <div class="row">
-            <!-- <?php
-                    if (isset($_GET['quanly'])) {
-                        $capnhat = $_GET['quanly'];
-                        $id_capnhat = $_GET['id'];
-                    } else {
-                        $capnhat = "";
-                    }
-                    if ($capnhat == 'update') {
-                        $sql_update = mysqli_query($con, "SELECT * FROM tbl_category WHERE category_id = '$id_capnhat'");
-                        $row_capnhat = mysqli_fetch_array($sql_update);
-                    ?> -->
+            <?php
+            if (isset($_GET['quanly'])) {
+                $capnhat = $_GET['quanly'];
+                $mahang = $_GET['mahang'];
+            } else {
+                $capnhat = "";
+            }
+            if ($capnhat == 'xemdonhang') {
+                // $sql_order = mysqli_query($con, "SELECT * FROM tbl_donhang WHERE mahang = '$mahang'");
+                // $row_order = mysqli_fetch_array($sql_order);
 
-            <!-- <?php } else { ?> -->
-            <!-- <div class="col-md-4">
+            ?>
+                <p>xem chi tiết đơn hàng</p>
+
+            <?php } else { ?>
+                <p>đơn hàng</p>
+                <!-- <div class="col-md-4">
                     <h4>Thêm danh mục</h4>
                     <label for="">Tên danh mục</label>
                     <form action="" method="POST">
@@ -94,7 +94,7 @@ if ($xoa == 'xoa') {
                         <input style="margin-top: 12px;" type="submit" name="themdanhmuc" class="btn btn-default btn-outline-success" value="Thêm danh mục">
                     </form>
                 </div> -->
-            <!-- <?php } ?> -->
+            <?php } ?>
             <div class="col-md-8">
                 <h4>Liệt kê đơn hàng</h4>
                 <?php
@@ -104,8 +104,6 @@ if ($xoa == 'xoa') {
                 <table class="table table-bordered">
                     <tr>
                         <td>Thứ tự</td>
-                        <td>Tên sản phẩm</td>
-                        <td>Số lượng</td>
                         <td>Mã hàng</td>
                         <td>Tên khách hàng</td>
                         <td>Ngày đặt</td>
@@ -116,18 +114,14 @@ if ($xoa == 'xoa') {
                     while ($row_donhang = mysqli_fetch_array($sql_donhang)) {
                         $tt++;
                     ?>
-                    <tr>
-                        <td><?php echo $tt ?></td>
-                        <td><?php echo $row_donhang['sanpham_name']; ?></td>
-                        <td><?php echo $row_donhang['soluong']; ?></td>
-                        <td><?php echo $row_donhang['mahang']; ?></td>
-                        <td><?php echo $row_donhang['name']; ?></td>
-                        <td><?php echo $row_donhang['ngaythang']; ?></td>
-                        <td><a class="btn btn-default btn-outline-success"
-                                href="?quanly=xoa&id=<?php echo $row_donhang['donhang_id'] ?>">Xóa</a>
-                            || <a class="btn btn-default btn-outline-success"
-                                href="?quanly=update&id=<?php echo $row_danhmuc['donhang_id'] ?>">Cập nhật</a></td>
-                    </tr>
+                        <tr>
+                            <td><?php echo $tt ?></td>
+                            <td><?php echo $row_donhang['mahang']; ?></td>
+                            <td><?php echo $row_donhang['name']; ?></td>
+                            <td><?php echo $row_donhang['ngaythang']; ?></td>
+                            <td><a class="btn btn-default btn-outline-success" href="?quanly=xoa&id=<?php echo $row_donhang['donhang_id'] ?>">Xóa</a>
+                                || <a class="btn btn-default btn-outline-success" href="?quanly=xemdonhang&mahang=<?php echo $row_donhang['mahang'] ?>">Cập nhật</a></td>
+                        </tr>
                     <?php } ?>
                 </table>
             </div>
