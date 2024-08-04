@@ -51,6 +51,8 @@ if (isset($_POST['btn_giohang'])) {
             $sanpham_id = $_POST['thanhtoan_product_id'][$i];
             $soluong = $_POST['thanhtoan_soluong'][$i];
             $sql_donhang = mysqli_query($con, "INSERT INTO tbl_donhang(sanpham_id, khachhang_id, soluong, mahang) VALUES ('$sanpham_id', '$khachhang_id','$soluong', '$mahang') ");
+            $sql_giaodich = mysqli_query($con, "INSERT INTO tbl_giaodich(sanpham_id, soluong, magiaodich, khachhang_id) 
+            VALUES ('$sanpham_id', '$soluong','$mahang', '$khachhang_id') ");
             $sql_delete_thanhtoan = mysqli_query($con, "DELETE FROM tbl_giohang WHERE sanpham_id = '$sanpham_id'");
         }
     }

@@ -45,8 +45,10 @@ require("../db/connect.php");
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"><img style="height: 35px; width: 35px;" src="../images/logoshop.JPG" alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="#"><img style="height: 35px; width: 35px;" src="../images/logoshop.JPG"
+                alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -59,7 +61,8 @@ require("../db/connect.php");
                     <a class="nav-link" href="xulydanhmuc.php">Danh mục</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="xulysanpham.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="xulysanpham.php" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Sản phẩm
                     </a>
                     <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -84,7 +87,7 @@ require("../db/connect.php");
             <div class="col-md-12">
                 <h4>Liệt kê khách hàng</h4>
                 <?php
-                $sql_khachhang = mysqli_query($con, "SELECT * FROM tbl_khachhang  ORDER BY tbl_khachhang.khachhang_id DESC");
+                $sql_khachhang = mysqli_query($con, "SELECT * FROM tbl_khachhang, tbl_giaodich WHERE tbl_khachhang.khachhang_id = tbl_giaodich.khachhang_id  ORDER BY tbl_khachhang.khachhang_id DESC");
                 ?>
                 <table class="table table-bordered">
                     <tr>
@@ -93,7 +96,7 @@ require("../db/connect.php");
                         <td>Số điện thoại</td>
                         <td>Gmail</td>
                         <td>Địa chỉ</td>
-                        <td>Ghi chú</td>
+                        <td>Ngày mua</td>
                         <td>Quản lý</td>
                     </tr>
                     <?php
@@ -101,17 +104,18 @@ require("../db/connect.php");
                     while ($row_khachhang = mysqli_fetch_array($sql_khachhang)) {
                         $tt++;
                     ?>
-                        <tr>
-                            <td><?php echo $tt ?></td>
-                            <td><?php echo $row_khachhang['name']; ?></td>
-                            <td><?php echo $row_khachhang['phone']; ?></td>
-                            <td><?php echo $row_khachhang['email']; ?></td>
-                            <td><?php echo $row_khachhang['address']; ?></td>
-                            <td><?php echo $row_khachhang['note']; ?></td>
-                            <td><a class="btn btn-default btn-outline-success" href="?quanly=giaodich&id=<?php echo $row_khachhang['khachhang_id'] ?>">Xem giao
-                                    dịch</a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td><?php echo $tt ?></td>
+                        <td><?php echo $row_khachhang['name']; ?></td>
+                        <td><?php echo $row_khachhang['phone']; ?></td>
+                        <td><?php echo $row_khachhang['email']; ?></td>
+                        <td><?php echo $row_khachhang['address']; ?></td>
+                        <td><?php echo $row_khachhang['ngaythang']; ?></td>
+                        <td><a class="btn btn-default btn-outline-success"
+                                href="?quanly=giaodich&khachhang=<?php echo $row_khachhang['magiaodich'] ?>">Xem giao
+                                dịch</a>
+                        </td>
+                    </tr>
                     <?php } ?>
                 </table>
             </div>
