@@ -66,6 +66,19 @@ if (isset($_POST['dangnhap_login'])) {
     //  else {
     //     echo "Lỗi";
     // }
+} elseif (isset($_POST['dangky'])) {
+    $name = $_POST['name'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    $gmail = $_POST['email'];
+    $password = $_POST['password'];
+    $sql_khachhang = mysqli_query($con, "INSERT INTO tbl_khachhang (name, phone, address, email, password ) VALUES('$name','$phone','$address','$gmail', '$password') ");
+
+    $sql_select_khachhang = mysqli_query($con, "SELECT *FROM tbl_khachhang ORDER BY khachhang_id DESC");
+    $row_select_khachhang = mysqli_fetch_array($sql_select_khachhang);
+    $_SESSION['dangnhap_login'] = $name;
+    $_SESSION['khachhang_id'] = $row_select_khachhang['khachhang_id '];
+    header("location: ?quanly=giohang");
 }
 ?>
 
@@ -78,16 +91,15 @@ if (isset($_POST['dangnhap_login'])) {
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8" />
-    <meta name="keywords"
-        content="Electro Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <meta name="keywords" content="Electro Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script>
-    addEventListener("load", function() {
-        setTimeout(hideURLbar, 0);
-    }, false);
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-    function hideURLbar() {
-        window.scrollTo(0, 1);
-    }
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
     </script>
     <!-- //Meta tag Keywords -->
 
@@ -105,12 +117,8 @@ if (isset($_POST['dangnhap_login'])) {
     <!-- //Custom-Files -->
 
     <!-- web fonts -->
-    <link
-        href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext"
-        rel="stylesheet">
-    <link
-        href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
-        rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
     <!-- //web fonts -->
 
 </head>
@@ -194,15 +202,14 @@ if (isset($_POST['dangnhap_login'])) {
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="post">
+                    <form action="" method="post">
                         <div class="form-group">
                             <label class="col-form-label">Gmail</label>
                             <input type="text" class="form-control" placeholder=" " name="email_login" required="">
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Mật khẩu</label>
-                            <input type="password" class="form-control" placeholder=" " name="password_login"
-                                required="">
+                            <input type="password" class="form-control" placeholder=" " name="password_login" required="">
                         </div>
                         <div class="right-w3l">
                             <input type="submit" class="form-control" name="dangnhap_login" value="Đăng nhập">
@@ -227,41 +234,43 @@ if (isset($_POST['dangnhap_login'])) {
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Register</h5>
+                    <h5 class="modal-title">Đăng ký</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="post">
+                    <form action="" method="post">
                         <div class="form-group">
-                            <label class="col-form-label">Your Name</label>
-                            <input type="text" class="form-control" placeholder=" " name="Name" required="">
+                            <label class="col-form-label">Họ và tên</label>
+                            <input type="text" class="form-control" placeholder=" " name="name" required="">
                         </div>
                         <div class="form-group">
-                            <label class="col-form-label">Email</label>
-                            <input type="email" class="form-control" placeholder=" " name="Email" required="">
+                            <label class="col-form-label">Gmail</label>
+                            <input type="email" class="form-control" placeholder=" " name="email" required="">
                         </div>
                         <div class="form-group">
-                            <label class="col-form-label">Password</label>
-                            <input type="password" class="form-control" placeholder=" " name="Password" id="password1"
-                                required="">
+                            <label class="col-form-label">Mật khẩu</label>
+                            <input type="password" class="form-control" placeholder=" " name="password" id="password1" required="">
                         </div>
                         <div class="form-group">
-                            <label class="col-form-label">Confirm Password</label>
-                            <input type="password" class="form-control" placeholder=" " name="Confirm Password"
-                                id="password2" required="">
+                            <label class="col-form-label">Số điện thoại</label>
+                            <input type="text" class="form-control" placeholder=" " name="phone" required="">
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Địa chỉ</label>
+                            <input type="text" class="form-control" placeholder=" " name="address" required="">
                         </div>
                         <div class="right-w3l">
-                            <input type="submit" class="form-control" value="Register">
+                            <input type="submit" class="form-control" value="Đăng ký" name="dangky">
                         </div>
-                        <div class="sub-w3l">
+                        <!-- <div class="sub-w3l">
                             <div class="custom-control custom-checkbox mr-sm-2">
                                 <input type="checkbox" class="custom-control-input" id="customControlAutosizing2">
                                 <label class="custom-control-label" for="customControlAutosizing2">I Accept to the Terms
                                     & Conditions</label>
                             </div>
-                        </div>
+                        </div> -->
                     </form>
                 </div>
             </div>
@@ -289,8 +298,7 @@ if (isset($_POST['dangnhap_login'])) {
                         <!-- search -->
                         <div class="col-10 agileits_search">
                             <form class="form-inline" action="#" method="post">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Bạn cần tìm gì..?"
-                                    aria-label="Search" required>
+                                <input class="form-control mr-sm-2" type="search" placeholder="Bạn cần tìm gì..?" aria-label="Search" required>
                                 <button class="btn my-2 my-sm-0" type="submit">Tìm kiếm</button>
                             </form>
                         </div>
