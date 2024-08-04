@@ -1,3 +1,63 @@
+<?php
+// session_start();
+// ob_start();
+if (isset($_POST['dangnhap_login'])) {
+    $error = array();
+    if (empty($_POST['email_login'])) {
+        $error['email_login'] = 'Tên đăng nhập không được để trống';
+    } else {
+        if (!(strlen($_POST['email_login']) >= 6 && strlen($_POST['email_login']) <= 32)) {
+            $error['email_login'] = 'Gmail yêu cầu từ 6 đến 32 ký tự';
+        } else {
+            $partten = "/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/";
+            if (!preg_match(
+                $partten,
+                $_POST['email_login']
+            )) {
+                $error['email_login'] = 'Gmail không đúng định dạng, vui long nhập lại !';
+            } else {
+                $email = $_POST['email_login'];
+            }
+        }
+    }
+
+    if (empty($_POST['password_login'])) {
+        $error['password_login'] = 'mật khẩu không được để trống';
+    } else {
+        if (!(strlen($_POST['password_login']) >= 6 && strlen($_POST['password_login']) <= 32)) {
+            $error['password_login'] = 'Mật khẩu yêu cầu từ 6 đến 32 ký tự';
+        } else {
+            $partten = "/^([A-Z]){1}([\w_\.!@#$%^&*()]+){5,31}$/";
+            if (!preg_match(
+                $partten,
+                $_POST['password_login']
+            )) {
+                $error['password_login'] = 'Mật khẩu sai, vui lòng nhập lại';
+            } else {
+                $password = md5($_POST['password_login']);
+            }
+        }
+    }
+
+    if (empty($error)) {
+        $sql_login_index = mysqli_query($con, "SELECT *FROM tbl_khachhang WHERE email = '$email' AND password = '$password' LIMIT 1");
+        $count = mysqli_num_rows($sql_login_index);
+        $row_login_index = mysqli_fetch_array($sql_login_index);
+        if ($count > 0) {
+            header("location: ?quanly=giohang");
+            $_SESSION['dangnhap_login'] = $row_login_index['name'];
+            $_SESSION['khachhang_id'] = $row_login_index['khachhang_id '];
+        } else {
+            echo "<p>Tên đăng nhập hoặc mật khẩu sai</p>";
+        }
+    }
+    //  else {
+    //     echo "Lỗi";
+    // }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,10 +112,6 @@
                     <!-- header lists -->
                     <ul>
                         <li class="text-center border-right text-white">
-                            <a class="play-icon popup-with-zoom-anim text-white" href="#small-dialog1">
-                                <i class="fas fa-map-marker mr-2"></i>Chọn địa điểm</a>
-                        </li>
-                        <li class="text-center border-right text-white">
                             <a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">
                                 <i class="fas fa-truck mr-2"></i>Theo dõi đơn hàng</a>
                         </li>
@@ -63,11 +119,11 @@
                             <i class="fas fa-phone mr-2"></i> 0777682597
                         </li>
                         <li class="text-center border-right text-white">
-                            <a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">
+                            <a href="#" data-toggle="modal" data-target="#dangnhap" name="email" class="text-white">
                                 <i class="fas fa-sign-in-alt mr-2"></i> Đăng nhập </a>
                         </li>
                         <li class="text-center text-white">
-                            <a href="#" data-toggle="modal" data-target="#exampleModal2" class="text-white">
+                            <a href="#" data-toggle="modal" data-target="#dangky" class="text-white">
                                 <i class="fas fa-sign-out-alt mr-2"></i>Đăng ký </a>
                         </li>
                     </ul>
@@ -78,7 +134,7 @@
     </div>
 
     <!-- Button trigger modal(select-location) -->
-    <div id="small-dialog1" class="mfp-hide">
+    <!-- <div id="small-dialog1" class="mfp-hide">
         <div class="select-city">
             <h3>
                 <i class="fas fa-map-marker"></i> Please Select Your Location
@@ -106,16 +162,16 @@
             </select>
             <div class="clearfix"></div>
         </div>
-    </div>
+    </div> -->
     <!-- //shop locator (popup) -->
 
     <!-- modals -->
     <!-- log in -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="dangnhap" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-center">Log In</h5>
+                    <h5 class="modal-title text-center">Đăng nhập</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -123,25 +179,25 @@
                 <div class="modal-body">
                     <form action="#" method="post">
                         <div class="form-group">
-                            <label class="col-form-label">Username</label>
-                            <input type="text" class="form-control" placeholder=" " name="Name" required="">
+                            <label class="col-form-label">Gmail</label>
+                            <input type="text" class="form-control" placeholder=" " name="email_login" required="">
                         </div>
                         <div class="form-group">
-                            <label class="col-form-label">Password</label>
-                            <input type="password" class="form-control" placeholder=" " name="Password" required="">
+                            <label class="col-form-label">Mật khẩu</label>
+                            <input type="password" class="form-control" placeholder=" " name="password_login" required="">
                         </div>
                         <div class="right-w3l">
-                            <input type="submit" class="form-control" value="Log in">
+                            <input type="submit" class="form-control" name="dangnhap_login" value="Đăng nhập">
                         </div>
-                        <div class="sub-w3l">
+                        <!-- <div class="sub-w3l">
                             <div class="custom-control custom-checkbox mr-sm-2">
                                 <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
                                 <label class="custom-control-label" for="customControlAutosizing">Remember me?</label>
                             </div>
-                        </div>
-                        <p class="text-center dont-do mt-3">Don't have an account?
-                            <a href="#" data-toggle="modal" data-target="#exampleModal2">
-                                Register Now</a>
+                        </div> -->
+                        <p class="text-center dont-do mt-3">Bạn chưa có tài khoản?
+                            <a href="#" data-toggle="modal" data-target="#dangky">
+                                Đăng ký</a>
                         </p>
                     </form>
                 </div>
@@ -149,7 +205,7 @@
         </div>
     </div>
     <!-- register -->
-    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="dangky" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

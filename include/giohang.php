@@ -39,8 +39,9 @@ if (isset($_POST['btn_giohang'])) {
     $address = $_POST['address'];
     $note = $_POST['note'];
     $gmail = $_POST['email'];
+    $password = $_POST['password'];
     $giaohang = $_POST['giaohang'];
-    $sql_khachhang = mysqli_query($con, "INSERT INTO tbl_khachhang (name, phone, address, note, email, giaohang ) VALUES('$name','$phone','$address','$note','$gmail','$giaohang') ");
+    $sql_khachhang = mysqli_query($con, "INSERT INTO tbl_khachhang (name, phone, address, note, email, giaohang, password ) VALUES('$name','$phone','$address','$note','$gmail','$giaohang', '$password') ");
 
     if ($sql_khachhang) {
         $sql_select_khachhang = mysqli_query($con, "SELECT * FROM tbl_khachhang ORDER BY khachhang_id DESC LIMIT 1");
@@ -108,37 +109,43 @@ if (isset($_POST['btn_giohang'])) {
                                 $tt++;
                                 $total += $sub_total;
                             ?>
-                                <tr class="rem1">
-                                    <td class="invert"><?php echo $tt; ?></td>
-                                    <td class="invert-image" style="width: 269px">
-                                        <a href="single.html">
-                                            <img src="images/<?php echo $row_lay_giohang['hinhanh']; ?>" alt=" " class="img-responsive">
-                                        </a>
-                                    </td>
-                                    <td class="invert">
-                                        <div class="quantity">
-                                            <input type="hidden" name="product_id[]" value="<?php echo $row_lay_giohang['sanpham_id']; ?>">
-                                            </input>
-                                            <input style="text-align: center; width: 48px;" name="soluong[]" type="number" min="0" value="<?php echo $row_lay_giohang['soluong']; ?>" class="quantity-select">
-                                            </input>
-                                        </div>
-                                    </td>
-                                    <td class="invert"><?php echo $row_lay_giohang['tensanpham']; ?></td>
-                                    <td class="invert"><?php echo number_format($row_lay_giohang['giasanpham']) . "vnđ";  ?>
-                                    </td>
-                                    <td class="invert"><?php echo number_format($sub_total) . "vnđ"; ?></td>
-                                    <td class="invert">
-                                        <div class="rem">
-                                            <a href="?quanly=giohang&xoa=<?php echo $row_lay_giohang['giohang_id']; ?>">Xóa</a>
-                                        </div>
-                                    </td>
-                                </tr>
+                            <tr class="rem1">
+                                <td class="invert"><?php echo $tt; ?></td>
+                                <td class="invert-image" style="width: 269px">
+                                    <a href="single.html">
+                                        <img src="images/<?php echo $row_lay_giohang['hinhanh']; ?>" alt=" "
+                                            class="img-responsive">
+                                    </a>
+                                </td>
+                                <td class="invert">
+                                    <div class="quantity">
+                                        <input type="hidden" name="product_id[]"
+                                            value="<?php echo $row_lay_giohang['sanpham_id']; ?>">
+                                        </input>
+                                        <input style="text-align: center; width: 48px;" name="soluong[]" type="number"
+                                            min="0" value="<?php echo $row_lay_giohang['soluong']; ?>"
+                                            class="quantity-select">
+                                        </input>
+                                    </div>
+                                </td>
+                                <td class="invert"><?php echo $row_lay_giohang['tensanpham']; ?></td>
+                                <td class="invert"><?php echo number_format($row_lay_giohang['giasanpham']) . "vnđ";  ?>
+                                </td>
+                                <td class="invert"><?php echo number_format($sub_total) . "vnđ"; ?></td>
+                                <td class="invert">
+                                    <div class="rem">
+                                        <a
+                                            href="?quanly=giohang&xoa=<?php echo $row_lay_giohang['giohang_id']; ?>">Xóa</a>
+                                    </div>
+                                </td>
+                            </tr>
                             <?php } ?>
                             <tr>
                                 <td colspan="7">Tổng tiền: <?php echo number_format($total) . "vnđ"; ?></td>
                             </tr>
                             <tr>
-                                <td colspan="7"><input type="submit" class="btn btn-success" value="Cập nhật giỏ hàng" name="capnhatgiohang"></td>
+                                <td colspan="7"><input type="submit" class="btn btn-success" value="Cập nhật giỏ hàng"
+                                        name="capnhatgiohang"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -153,25 +160,34 @@ if (isset($_POST['btn_giohang'])) {
                         <div class="information-wrapper">
                             <div class="first-row">
                                 <div class="controls form-group">
-                                    <input class="billing-address-name form-control" type="text" name="name" placeholder="Họ và tên" required="">
+                                    <input class="billing-address-name form-control" type="text" name="name"
+                                        placeholder="Họ và tên" required="">
                                 </div>
                                 <div class="w3_agileits_card_number_grids">
                                     <div class="w3_agileits_card_number_grid_left form-group">
                                         <div class="controls">
-                                            <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" required="">
+                                            <input type="text" class="form-control" placeholder="Số điện thoại"
+                                                name="phone" required="">
                                         </div>
                                     </div>
                                     <div class="w3_agileits_card_number_grid_right form-group">
                                         <div class="controls">
-                                            <input type="text" class="form-control" placeholder="Địa chỉ" name="address" required="">
+                                            <input type="text" class="form-control" placeholder="Địa chỉ" name="address"
+                                                required="">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="controls form-group">
-                                    <input type="text" class="form-control" placeholder="Gmail" name="email" required="">
+                                    <input type="text" class="form-control" placeholder="Gmail" name="email"
+                                        required="">
                                 </div>
                                 <div class="controls form-group">
-                                    <textarea style="resize: none;" name="note" class="form-control" placeholder="Ghi chú..."></textarea>
+                                    <input type="hidden" class="form-control" placeholder="Password" name="password"
+                                        required="">
+                                </div>
+                                <div class="controls form-group">
+                                    <textarea style="resize: none;" name="note" class="form-control"
+                                        placeholder="Ghi chú..."></textarea>
                                 </div>
                                 <div class="controls form-group">
                                     <select name="giaohang" class="option-w3ls">
@@ -186,12 +202,15 @@ if (isset($_POST['btn_giohang'])) {
                             while ($row_thanhtoan = mysqli_fetch_array($sql_lay_giohang)) {
                             ?>
 
-                                <input type="hidden" name="thanhtoan_product_id[]" value="<?php echo $row_thanhtoan['sanpham_id']; ?>">
-                                </input>
-                                <input style="text-align: center; width: 48px;" name="thanhtoan_soluong[]" type="hidden" value="<?php echo $row_thanhtoan['soluong']; ?>" class="quantity-select">
-                                </input>
+                            <input type="hidden" name="thanhtoan_product_id[]"
+                                value="<?php echo $row_thanhtoan['sanpham_id']; ?>">
+                            </input>
+                            <input style="text-align: center; width: 48px;" name="thanhtoan_soluong[]" type="hidden"
+                                value="<?php echo $row_thanhtoan['soluong']; ?>" class="quantity-select">
+                            </input>
                             <?php } ?>
-                            <input type="submit" name="thanhtoan" class="submit check_out btn" value="Thanh toán đến địa chỉ này" style="width: 22%;">
+                            <input type="submit" name="thanhtoan" class="submit check_out btn"
+                                value="Thanh toán đến địa chỉ này" style="width: 22%;">
                         </div>
                     </div>
                 </form>
