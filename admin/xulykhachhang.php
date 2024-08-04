@@ -87,7 +87,7 @@ require("../db/connect.php");
             <div class="col-md-12">
                 <h4>Liệt kê khách hàng</h4>
                 <?php
-                $sql_khachhang = mysqli_query($con, "SELECT * FROM tbl_khachhang, tbl_giaodich WHERE tbl_khachhang.khachhang_id = tbl_giaodich.khachhang_id  ORDER BY tbl_khachhang.khachhang_id DESC");
+                $sql_khachhang = mysqli_query($con, "SELECT * FROM tbl_khachhang, tbl_giaodich WHERE tbl_khachhang.khachhang_id = tbl_giaodich.khachhang_id GROUP BY tbl_giaodich.magiaodich  ORDER BY tbl_khachhang.khachhang_id DESC");
                 ?>
                 <table class="table table-bordered">
                     <tr>
@@ -115,6 +115,40 @@ require("../db/connect.php");
                                 href="?quanly=giaodich&khachhang=<?php echo $row_khachhang['magiaodich'] ?>">Xem giao
                                 dịch</a>
                         </td>
+                    </tr>
+                    <?php } ?>
+                </table>
+            </div>
+
+            <div class="col-md-12">
+                <h4>Lịch sử đơn hàng</h4>
+                <?php
+                if (isset($_GET['khachhang'])) {
+                    $magiaodich = $_GET['khachhang'];
+                } else {
+                    $magiaodich = '';
+                }
+                $sql_donhang = mysqli_query($con, "SELECT * FROM tbl_giaodich,tbl_khachhang,tbl_sanpham
+                WHERE tbl_giaodich.sanpham_id = tbl_sanpham.sanpham_id AND tbl_giaodich.khachhang_id = tbl_khachhang.khachhang_id AND tbl_giaodich.magiaodich = '$magiaodich' ORDER BY tbl_giaodich.giaodich_id DESC");
+                ?>
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Thứ tự</td>
+                        <td>Mã giao dịch</td>
+                        <td>Tên sản phẩm</td>
+                        <td>Ngày đặt</td>
+                    </tr>
+                    <?php
+                    $tt = 0;
+                    while ($row_donhang = mysqli_fetch_array($sql_donhang)) {
+                        $tt++;
+                    ?>
+                    <tr>
+                        <td><?php echo $tt ?></td>
+                        <td><?php echo $row_donhang['magiaodich']; ?></td>
+                        <td><?php echo $row_donhang['sanpham_name']; ?></td>
+                        <td><?php echo $row_donhang['ngaythang']; ?></td>
+
                     </tr>
                     <?php } ?>
                 </table>
