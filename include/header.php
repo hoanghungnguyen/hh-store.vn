@@ -1,6 +1,6 @@
 <?php
-// session_start();
-// ob_start();
+session_start();
+ob_start();
 if (isset($_POST['dangnhap_login'])) {
     $error = array();
     if (empty($_POST['email_login'])) {
