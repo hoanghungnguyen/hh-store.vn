@@ -33,6 +33,12 @@ if (isset($_POST['btn_giohang'])) {
 } elseif (isset($_GET['xoa'])) {
     $id = $_GET['xoa'];
     $sql_delete = mysqli_query($con, "DELETE FROM tbl_giohang WHERE giohang_id = '$id'");
+} elseif (isset($_GET['dangxuat'])) {
+    $id = $_GET['dangxuat'];
+    if ($id = 1) {
+        unset($_SESSION['dangnhap_login']);
+    }
+    header('location: ?quanly=giohang');
 } elseif (isset($_POST['thanhtoan'])) {
     $name = $_POST['name'];
     $phone = $_POST['phone'];
@@ -48,6 +54,8 @@ if (isset($_POST['btn_giohang'])) {
         $mahang = rand(0, 9999);
         $row_khachhang = mysqli_fetch_array($sql_select_khachhang);
         $khachhang_id = $row_khachhang['khachhang_id'];
+        $_SESSION['dangnhap_login'] = $row_khachhang['name'];
+        $_SESSION['khachhang_id'] = $khachhang_id;
         for ($i = 0; $i < count($_POST['thanhtoan_product_id']); $i++) {
             $sanpham_id = $_POST['thanhtoan_product_id'][$i];
             $soluong = $_POST['thanhtoan_soluong'][$i];
@@ -82,7 +90,7 @@ if (isset($_POST['btn_giohang'])) {
         </h3>
         <?php
         if (isset($_SESSION['dangnhap_login'])) {
-            echo "<p>Xin chào: " . $_SESSION['dangnhap_login'] . "<a href=''> Đăng xuất</a></p></br>";
+            echo "<p>Xin chào: " . $_SESSION['dangnhap_login'] . "<a href='?quanly=giohang&dangxuat=1'> Đăng xuất</a></p></br>";
         } else {
             echo  '';
         }
@@ -153,66 +161,72 @@ if (isset($_POST['btn_giohang'])) {
                 </form>
             </div>
         </div>
-        <div class="checkout-left">
-            <div class="address_form_agile mt-sm-5 mt-4">
-                <h4 class="mb-sm-4 mb-3">Thêm địa chỉ giao hàng</h4>
-                <form action="" method="POST" class="creditly-card-form agileinfo_form">
-                    <div class="creditly-wrapper wthree, w3_agileits_wrapper">
-                        <div class="information-wrapper">
-                            <div class="first-row">
-                                <div class="controls form-group">
-                                    <input class="billing-address-name form-control" type="text" name="name" placeholder="Họ và tên" required="">
-                                </div>
-                                <div class="w3_agileits_card_number_grids">
-                                    <div class="w3_agileits_card_number_grid_left form-group">
-                                        <div class="controls">
-                                            <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" required="">
+        <?php
+        if (empty($_SESSION['dangnhap_login'])) {
+        ?>
+            <div class="checkout-left">
+                <div class="address_form_agile mt-sm-5 mt-4">
+                    <h4 class="mb-sm-4 mb-3">Thêm địa chỉ giao hàng</h4>
+                    <form action="" method="POST" class="creditly-card-form agileinfo_form">
+                        <div class="creditly-wrapper wthree, w3_agileits_wrapper">
+                            <div class="information-wrapper">
+                                <div class="first-row">
+                                    <div class="controls form-group">
+                                        <input class="billing-address-name form-control" type="text" name="name" placeholder="Họ và tên" required="">
+                                    </div>
+                                    <div class="w3_agileits_card_number_grids">
+                                        <div class="w3_agileits_card_number_grid_left form-group">
+                                            <div class="controls">
+                                                <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" required="">
+                                            </div>
+                                        </div>
+                                        <div class="w3_agileits_card_number_grid_right form-group">
+                                            <div class="controls">
+                                                <input type="text" class="form-control" placeholder="Địa chỉ" name="address" required="">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="w3_agileits_card_number_grid_right form-group">
-                                        <div class="controls">
-                                            <input type="text" class="form-control" placeholder="Địa chỉ" name="address" required="">
-                                        </div>
+                                    <div class="controls form-group">
+                                        <input type="text" class="form-control" placeholder="Gmail" name="email" required="">
+                                    </div>
+                                    <div class="controls form-group">
+                                        <input type="hidden" class="form-control" placeholder="Password" name="password" required="">
+                                    </div>
+                                    <div class="controls form-group">
+                                        <textarea style="resize: none;" name="note" class="form-control" placeholder="Ghi chú..."></textarea>
+                                    </div>
+                                    <div class="controls form-group">
+                                        <select name="giaohang" class="option-w3ls">
+                                            <option>Chọn hình thức thanh toán</option>
+                                            <option value="1">Thanh toán ATM</option>
+                                            <option value="0">Thanh toán tại nhà</option>
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="controls form-group">
-                                    <input type="text" class="form-control" placeholder="Gmail" name="email" required="">
-                                </div>
-                                <div class="controls form-group">
-                                    <input type="hidden" class="form-control" placeholder="Password" name="password" required="">
-                                </div>
-                                <div class="controls form-group">
-                                    <textarea style="resize: none;" name="note" class="form-control" placeholder="Ghi chú..."></textarea>
-                                </div>
-                                <div class="controls form-group">
-                                    <select name="giaohang" class="option-w3ls">
-                                        <option>Chọn hình thức thanh toán</option>
-                                        <option value="1">Thanh toán ATM</option>
-                                        <option value="0">Thanh toán tại nhà</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <?php
-                            $sql_lay_giohang = mysqli_query($con, "SELECT * FROM `tbl_giohang` ORDER BY sanpham_id DESC");
-                            while ($row_thanhtoan = mysqli_fetch_array($sql_lay_giohang)) {
-                            ?>
+                                <?php
+                                $sql_lay_giohang = mysqli_query($con, "SELECT * FROM `tbl_giohang` ORDER BY sanpham_id DESC");
+                                while ($row_thanhtoan = mysqli_fetch_array($sql_lay_giohang)) {
+                                ?>
 
-                                <input type="hidden" name="thanhtoan_product_id[]" value="<?php echo $row_thanhtoan['sanpham_id']; ?>">
-                                </input>
-                                <input style="text-align: center; width: 48px;" name="thanhtoan_soluong[]" type="hidden" value="<?php echo $row_thanhtoan['soluong']; ?>" class="quantity-select">
-                                </input>
-                            <?php } ?>
-                            <input type="submit" name="thanhtoan" class="submit check_out btn" value="Thanh toán đến địa chỉ này" style="width: 22%;">
+                                    <input type="hidden" name="thanhtoan_product_id[]" value="<?php echo $row_thanhtoan['sanpham_id']; ?>">
+                                    </input>
+                                    <input style="text-align: center; width: 48px;" name="thanhtoan_soluong[]" type="hidden" value="<?php echo $row_thanhtoan['soluong']; ?>" class="quantity-select">
+                                    </input>
+                                <?php } ?>
+                                <input type="submit" name="thanhtoan" class="submit check_out btn" value="Thanh toán đến địa chỉ này" style="width: 22%;">
+                            </div>
                         </div>
-                    </div>
-                </form>
-                <!-- <div class="checkout-right-basket">
+                    </form>
+                    <!-- <div class="checkout-right-basket">
                     <a href="payment.html">Thực hiện thanh toán
                         <span class="far fa-hand-point-right"></span>
                     </a>
                 </div> -->
+                </div>
             </div>
-        </div>
+        <?php
+        }
+        ?>
     </div>
 </div>
 <!-- //checkout page -->
