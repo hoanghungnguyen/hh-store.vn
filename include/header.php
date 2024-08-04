@@ -4,17 +4,23 @@
 if (isset($_POST['dangnhap_login'])) {
     $error = array();
     if (empty($_POST['email_login'])) {
-        $error['email_login'] = 'Tên đăng nhập không được để trống';
+        // $error['email_login'] = 'Tên đăng nhập không được để trống';
+        $error = "<script>alert('Tên đăng nhập không được để trống');</script>";
+        echo $error;
     } else {
         if (!(strlen($_POST['email_login']) >= 6 && strlen($_POST['email_login']) <= 32)) {
-            $error['email_login'] = 'Gmail yêu cầu từ 6 đến 32 ký tự';
+            // $error['email_login'] = 'Gmail yêu cầu từ 6 đến 32 ký tự';
+            $error = "<script>alert('Gmail yêu cầu từ 6 đến 32 ký tự');</script>";
+            echo $error;
         } else {
             $partten = "/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/";
             if (!preg_match(
                 $partten,
                 $_POST['email_login']
             )) {
-                $error['email_login'] = 'Gmail không đúng định dạng, vui long nhập lại !';
+                // $error['email_login'] = 'Gmail không đúng định dạng, vui long nhập lại !';
+                $error = "<script>alert('Gmail không đúng định dạng, vui long nhập lại!');</script>";
+                echo $error;
             } else {
                 $email = $_POST['email_login'];
             }
@@ -22,17 +28,23 @@ if (isset($_POST['dangnhap_login'])) {
     }
 
     if (empty($_POST['password_login'])) {
-        $error['password_login'] = 'mật khẩu không được để trống';
+        // $error['password_login'] = 'mật khẩu không được để trống';
+        $error = "<script>alert('Mật khẩu không được để trống');</script>";
+        echo $error;
     } else {
         if (!(strlen($_POST['password_login']) >= 6 && strlen($_POST['password_login']) <= 32)) {
-            $error['password_login'] = 'Mật khẩu yêu cầu từ 6 đến 32 ký tự';
+            // $error['password_login'] = 'Mật khẩu yêu cầu từ 6 đến 32 ký tự';
+            $error = "<script>alert('Mật khẩu yêu cầu từ 6 đến 32 ký tự');</script>";
+            echo $error;
         } else {
             $partten = "/^([A-Z]){1}([\w_\.!@#$%^&*()]+){5,31}$/";
             if (!preg_match(
                 $partten,
                 $_POST['password_login']
             )) {
-                $error['password_login'] = 'Mật khẩu sai, vui lòng nhập lại';
+                // $error['password_login'] = 'Mật khẩu sai, vui lòng nhập lại';
+                $error = "<script>alert('Mật khẩu sai, vui lòng nhập lại');</script>";
+                echo $error;
             } else {
                 $password = md5($_POST['password_login']);
             }
@@ -48,7 +60,7 @@ if (isset($_POST['dangnhap_login'])) {
             $_SESSION['dangnhap_login'] = $row_login_index['name'];
             $_SESSION['khachhang_id'] = $row_login_index['khachhang_id '];
         } else {
-            echo "<p>Tên đăng nhập hoặc mật khẩu sai</p>";
+            echo "<script>alert('Tên đăng nhập hoặc mật khẩu sai');</script>";
         }
     }
     //  else {
@@ -66,15 +78,16 @@ if (isset($_POST['dangnhap_login'])) {
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8" />
-    <meta name="keywords" content="Electro Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <meta name="keywords"
+        content="Electro Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script>
-        addEventListener("load", function() {
-            setTimeout(hideURLbar, 0);
-        }, false);
+    addEventListener("load", function() {
+        setTimeout(hideURLbar, 0);
+    }, false);
 
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    }
     </script>
     <!-- //Meta tag Keywords -->
 
@@ -92,8 +105,12 @@ if (isset($_POST['dangnhap_login'])) {
     <!-- //Custom-Files -->
 
     <!-- web fonts -->
-    <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+    <link
+        href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext"
+        rel="stylesheet">
+    <link
+        href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+        rel="stylesheet">
     <!-- //web fonts -->
 
 </head>
@@ -184,7 +201,8 @@ if (isset($_POST['dangnhap_login'])) {
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Mật khẩu</label>
-                            <input type="password" class="form-control" placeholder=" " name="password_login" required="">
+                            <input type="password" class="form-control" placeholder=" " name="password_login"
+                                required="">
                         </div>
                         <div class="right-w3l">
                             <input type="submit" class="form-control" name="dangnhap_login" value="Đăng nhập">
@@ -226,11 +244,13 @@ if (isset($_POST['dangnhap_login'])) {
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Password</label>
-                            <input type="password" class="form-control" placeholder=" " name="Password" id="password1" required="">
+                            <input type="password" class="form-control" placeholder=" " name="Password" id="password1"
+                                required="">
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Confirm Password</label>
-                            <input type="password" class="form-control" placeholder=" " name="Confirm Password" id="password2" required="">
+                            <input type="password" class="form-control" placeholder=" " name="Confirm Password"
+                                id="password2" required="">
                         </div>
                         <div class="right-w3l">
                             <input type="submit" class="form-control" value="Register">
@@ -269,7 +289,8 @@ if (isset($_POST['dangnhap_login'])) {
                         <!-- search -->
                         <div class="col-10 agileits_search">
                             <form class="form-inline" action="#" method="post">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Bạn cần tìm gì..?" aria-label="Search" required>
+                                <input class="form-control mr-sm-2" type="search" placeholder="Bạn cần tìm gì..?"
+                                    aria-label="Search" required>
                                 <button class="btn my-2 my-sm-0" type="submit">Tìm kiếm</button>
                             </form>
                         </div>
