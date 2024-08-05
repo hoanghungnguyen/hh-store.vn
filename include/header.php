@@ -26,6 +26,13 @@ if (isset($_POST['dangnhap_login'])) {
             }
         }
     }
+    if (isset($_GET['dangxuat'])) {
+        $id_index = $_GET['dangxuat'];
+        if ($id_index = 'xuat') {
+            unset($_SESSION['dangnhap_login']);
+        }
+        header('location: index.php');
+    }
 
     if (empty($_POST['password_login'])) {
         // $error['password_login'] = 'mật khẩu không được để trống';
@@ -141,16 +148,17 @@ if (isset($_POST['dangnhap_login'])) {
                 <div class="col-lg-8 header-right mt-lg-0 mt-2">
                     <!-- header lists -->
                     <ul>
-                        <?php if(isset($_SESSION['dangnhap_login'])){ ?>
+                        <?php if (isset($_SESSION['dangnhap_login'])) { ?>
                         <li class="text-center border-right text-white">
                             <a href="?quanly=xemdonhang" class="text-white">
                                 <i class="fas fa-truck mr-2"></i>Xem đơn hàng:
                                 <?php echo $_SESSION['dangnhap_login'] ?></a>
                         </li>
-                        <?php }?>
+                        <?php } ?>
                         <li class="text-center border-right text-white">
                             <i class="fas fa-phone mr-2"></i> 0777682597
                         </li>
+                        <?php if (!isset($_SESSION['dangnhap_login'])) { ?>
                         <li class="text-center border-right text-white">
                             <a href="#" data-toggle="modal" data-target="#dangnhap" name="email" class="text-white">
                                 <i class="fas fa-sign-in-alt mr-2"></i> Đăng nhập </a>
@@ -159,6 +167,13 @@ if (isset($_POST['dangnhap_login'])) {
                             <a href="#" data-toggle="modal" data-target="#dangky" class="text-white">
                                 <i class="fas fa-sign-out-alt mr-2"></i>Đăng ký </a>
                         </li>
+                        <?php } ?>
+                        <?php if (isset($_SESSION['dangnhap_login'])) { ?>
+                        <li class="text-center text-white">
+                            <a href="?quanly=giohang&dangxuat='xuat'" class="text-white">
+                                <i class="fas fa-sign-out-alt mr-2"></i>Đăng xuất</a>
+                        </li>
+                        <?php } ?>
                     </ul>
                     <!-- //header lists -->
                 </div>
