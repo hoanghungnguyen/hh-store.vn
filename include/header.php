@@ -141,10 +141,13 @@ if (isset($_POST['dangnhap_login'])) {
                 <div class="col-lg-8 header-right mt-lg-0 mt-2">
                     <!-- header lists -->
                     <ul>
+                        <?php if(isset($_SESSION['dangnhap_login'])){ ?>
                         <li class="text-center border-right text-white">
-                            <a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">
-                                <i class="fas fa-truck mr-2"></i>Theo dõi đơn hàng</a>
+                            <a href="?quanly=xemdonhang" class="text-white">
+                                <i class="fas fa-truck mr-2"></i>Xem đơn hàng:
+                                <?php echo $_SESSION['dangnhap_login'] ?></a>
                         </li>
+                        <?php }?>
                         <li class="text-center border-right text-white">
                             <i class="fas fa-phone mr-2"></i> 0777682597
                         </li>

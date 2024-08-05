@@ -20,6 +20,8 @@ if ($tam == 'danhmuc') {
 	include("./include/giohang.php");
 } else if ($tam == 'timkiem') {
 	include("./include/timkiem.php");
+} else if ($tam == 'xemdonhang') {
+	include("./include/xemdonhang.php");
 } else {
 	include("./include/home.php");
 }
