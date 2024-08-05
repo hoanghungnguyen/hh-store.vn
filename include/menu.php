@@ -23,7 +23,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto text-center mr-xl-5">
                     <li class="nav-item active mr-lg-2 mb-lg-0 mb-2">
-                        <a class="nav-link" href="?">Trang chủ
+                        <a class="nav-link navbar-light navbar-nav" href="?">Trang chủ
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
@@ -32,14 +32,12 @@
                     while ($row_category_danhmuc = mysqli_fetch_array($sql_category_danhmuc)) {
                     ?>
                         <li class="nav-item  mr-lg-2 mb-lg-0 mb-2">
-                            <a class="nav-link " href="?quanly=danhmuc&id=<?php echo $row_category_danhmuc["category_id"]; ?>" role="button">
+                            <a class="nav-link navbar-light navbar-nav " href="?quanly=danhmuc&id=<?php echo $row_category_danhmuc["category_id"]; ?>" role="button">
                                 <?php echo $row_category_danhmuc['category_name'];  ?>
                             </a>
                         </li>
                     <?php } ?>
-                    <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                        <a class="nav-link" href="product.html">Tin tức</a>
-                    </li>
+
                     <li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Trang..

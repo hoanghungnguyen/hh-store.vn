@@ -265,8 +265,8 @@ button.w3view-cart {
 }
 
 .navbar-light .navbar-nav .nav-link {
-  letter-spacing: 1px;
-  font-size: 15px;
+  letter-spacing: 0px;
+  font-size: 16px;
   color: #000;
 }
 
@@ -274,7 +274,7 @@ button.w3view-cart {
 .navbar-light .navbar-nav .active > .nav-link,
 .navbar-light .navbar-nav .nav-link.show,
 .navbar-light .navbar-nav .nav-link.active {
-  color: #f45c5d;
+  /* color: #f45c5d; */
 }
 
 /*-- navigation-dropdown --*/
