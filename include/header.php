@@ -65,7 +65,7 @@ if (isset($_POST['dangnhap_login'])) {
         if ($count > 0) {
             header("location: ?quanly=giohang");
             $_SESSION['dangnhap_login'] = $row_login_index['name'];
-            $_SESSION['khachhang_id'] = $row_login_index['khachhang_id '];
+            $_SESSION['khachhang_id'] = $row_login_index['khachhang_id'];
         } else {
             echo "<script>alert('Tên đăng nhập hoặc mật khẩu sai');</script>";
         }
@@ -84,7 +84,8 @@ if (isset($_POST['dangnhap_login'])) {
     $sql_select_khachhang = mysqli_query($con, "SELECT *FROM tbl_khachhang ORDER BY khachhang_id DESC LIMIT 1");
     $row_select_khachhang = mysqli_fetch_array($sql_select_khachhang);
     $_SESSION['dangnhap_login'] = $name;
-    $_SESSION['khachhang_id'] = $row_select_khachhang['khachhang_id '];
+    $_SESSION['khachhang_id'] = $row_select_khachhang['khachhang_id'];
+
     header("location: ?quanly=giohang");
 }
 ?>
@@ -98,16 +99,15 @@ if (isset($_POST['dangnhap_login'])) {
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8" />
-    <meta name="keywords"
-        content="Electro Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <meta name="keywords" content="Electro Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script>
-    addEventListener("load", function() {
-        setTimeout(hideURLbar, 0);
-    }, false);
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-    function hideURLbar() {
-        window.scrollTo(0, 1);
-    }
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
     </script>
     <!-- //Meta tag Keywords -->
 
@@ -125,12 +125,8 @@ if (isset($_POST['dangnhap_login'])) {
     <!-- //Custom-Files -->
 
     <!-- web fonts -->
-    <link
-        href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext"
-        rel="stylesheet">
-    <link
-        href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
-        rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
     <!-- //web fonts -->
 
 </head>
@@ -148,31 +144,36 @@ if (isset($_POST['dangnhap_login'])) {
                 <div class="col-lg-8 header-right mt-lg-0 mt-2">
                     <!-- header lists -->
                     <ul>
-                        <?php if (isset($_SESSION['dangnhap_login'])) { ?>
-                        <li class="text-center border-right text-white">
-                            <a href="?quanly=xemdonhang" class="text-white">
-                                <i class="fas fa-truck mr-2"></i>Xem đơn hàng:
-                                <?php echo $_SESSION['dangnhap_login'] ?></a>
-                        </li>
-                        <?php } ?>
+                        <?php
+                        if (isset($_SESSION['dangnhap_login'])) {
+
+                        ?>
+                            <li class="text-center border-right text-white">
+                                <a href="index.php?quanly=xemdonhang&khachhang=<?php echo $_SESSION['khachhang_id'] ?>" class="text-white">
+                                    <i class="fas fa-truck mr-2"></i>Xem đơn hàng :
+                                    <?php echo $_SESSION['dangnhap_login'] ?></a>
+                            </li>
+                        <?php
+                        }
+                        ?>
                         <li class="text-center border-right text-white">
                             <i class="fas fa-phone mr-2"></i> 0777682597
                         </li>
                         <?php if (!isset($_SESSION['dangnhap_login'])) { ?>
-                        <li class="text-center border-right text-white">
-                            <a href="#" data-toggle="modal" data-target="#dangnhap" name="email" class="text-white">
-                                <i class="fas fa-sign-in-alt mr-2"></i> Đăng nhập </a>
-                        </li>
-                        <li class="text-center text-white">
-                            <a href="#" data-toggle="modal" data-target="#dangky" class="text-white">
-                                <i class="fas fa-sign-out-alt mr-2"></i>Đăng ký </a>
-                        </li>
+                            <li class="text-center border-right text-white">
+                                <a href="#" data-toggle="modal" data-target="#dangnhap" name="email" class="text-white">
+                                    <i class="fas fa-sign-in-alt mr-2"></i> Đăng nhập </a>
+                            </li>
+                            <li class="text-center text-white">
+                                <a href="#" data-toggle="modal" data-target="#dangky" class="text-white">
+                                    <i class="fas fa-sign-out-alt mr-2"></i>Đăng ký </a>
+                            </li>
                         <?php } ?>
                         <?php if (isset($_SESSION['dangnhap_login'])) { ?>
-                        <li class="text-center text-white">
-                            <a href="?quanly=giohang&dangxuat='xuat'" class="text-white">
-                                <i class="fas fa-sign-out-alt mr-2"></i>Đăng xuất</a>
-                        </li>
+                            <li class="text-center text-white">
+                                <a href="?quanly=giohang&dangxuat='xuat'" class="text-white">
+                                    <i class="fas fa-sign-out-alt mr-2"></i>Đăng xuất</a>
+                            </li>
                         <?php } ?>
                     </ul>
                     <!-- //header lists -->
@@ -232,8 +233,7 @@ if (isset($_POST['dangnhap_login'])) {
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Mật khẩu</label>
-                            <input type="password" class="form-control" placeholder=" " name="password_login"
-                                required="">
+                            <input type="password" class="form-control" placeholder=" " name="password_login" required="">
                         </div>
                         <div class="right-w3l">
                             <input type="submit" class="form-control" name="dangnhap_login" value="Đăng nhập">
@@ -275,8 +275,7 @@ if (isset($_POST['dangnhap_login'])) {
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Mật khẩu</label>
-                            <input type="password" class="form-control" placeholder=" " name="password" id="password1"
-                                required="">
+                            <input type="password" class="form-control" placeholder=" " name="password" id="password1" required="">
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Số điện thoại</label>
@@ -323,8 +322,7 @@ if (isset($_POST['dangnhap_login'])) {
                         <!-- search -->
                         <div class="col-10 agileits_search">
                             <form class="form-inline" action="?quanly=timkiem" method="POST">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Bạn cần tìm gì..?"
-                                    name="search_product" aria-label="Search" required>
+                                <input class="form-control mr-sm-2" type="search" placeholder="Bạn cần tìm gì..?" name="search_product" aria-label="Search" required>
                                 <button class="btn my-2 my-sm-0" name="search_btn" type="submit">Tìm kiếm</button>
                             </form>
                         </div>

@@ -16,8 +16,40 @@
                                 echo "Xem đơn hàng : " . $_SESSION['dangnhap_login'] . "";
                             }
                             ?>
+                            <div class="col-md-12">
+                                <?php
+                                if (isset($_GET['khachhang'])) {
+                                    $id_khachhang = $_GET['khachhang'];
+                                } else {
+                                    $id_khachhang = '';
+                                }
+                                $sql_select = mysqli_query($con, "SELECT * FROM tbl_giaodich WHERE tbl_giaodich.khachhang_id='$id_khachhang' GROUP BY tbl_giaodich.magiaodich");
+
+                                ?>
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <td>Thứ tự</td>
+                                        <td>Mã giao dịch</td>
+                                        <td>Ngày đặt</td>
+                                    </tr>
+                                    <?php
+                                    $tt = 0;
+                                    while ($row_giaodich = mysqli_fetch_array($sql_select)) {
+                                        $tt++;
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $tt ?></td>
+                                            <td><?php echo $row_giaodich['magiaodich']; ?></td>
+                                            <td><?php echo $row_giaodich['ngaythang']; ?></td>
+
+                                        </tr>
+                                    <?php } ?>
+                                </table>
+                            </div>
                         </div>
+
                     </div>
+
                 </div>
             </div>
         </div>
