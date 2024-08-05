@@ -18,6 +18,8 @@ if ($tam == 'danhmuc') {
 	include("./include/chitietsp.php");
 } else if ($tam == 'giohang') {
 	include("./include/giohang.php");
+} else if ($tam == 'timkiem') {
+	include("./include/timkiem.php");
 } else {
 	include("./include/home.php");
 }
