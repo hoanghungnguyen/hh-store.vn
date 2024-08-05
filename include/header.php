@@ -71,10 +71,10 @@ if (isset($_POST['dangnhap_login'])) {
     $phone = $_POST['phone'];
     $address = $_POST['address'];
     $gmail = $_POST['email'];
-    $password = $_POST['password'];
+    $password = md5($_POST['password']);
     $sql_khachhang = mysqli_query($con, "INSERT INTO tbl_khachhang (name, phone, address, email, password ) VALUES('$name','$phone','$address','$gmail', '$password') ");
 
-    $sql_select_khachhang = mysqli_query($con, "SELECT *FROM tbl_khachhang ORDER BY khachhang_id DESC");
+    $sql_select_khachhang = mysqli_query($con, "SELECT *FROM tbl_khachhang ORDER BY khachhang_id DESC LIMIT 1");
     $row_select_khachhang = mysqli_fetch_array($sql_select_khachhang);
     $_SESSION['dangnhap_login'] = $name;
     $_SESSION['khachhang_id'] = $row_select_khachhang['khachhang_id '];
