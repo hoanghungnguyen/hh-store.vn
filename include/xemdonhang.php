@@ -1,3 +1,15 @@
+<?php
+if (isset($_GET['huydon']) && isset($_GET['magiaodich'])) {
+    $huydon = $_GET['huydon'];
+    $magiaodich = $_GET['magiaodich'];
+} else {
+    $huydon = "";
+    $magiaodich = "";
+}
+$sql_update_donhang = mysqli_query($con, "UPDATE tbl_donhang SET huydon = '$huydon' WHERE mahang = '$magiaodich'");
+$sql_update_giaodich = mysqli_query($con, "UPDATE tbl_giaodich SET huydon = '$huydon' WHERE magiaodich = '$magiaodich'");
+?>
+
 <div class="ads-grid py-sm-5 py-4">
     <div class="container py-xl-4 py-lg-2">
         <!-- tittle heading -->
@@ -41,38 +53,36 @@
                                     while ($row_donhang = mysqli_fetch_array($sql_select)) {
                                         $i++;
                                     ?>
-                                    <tr>
-                                        <td><?php echo $i; ?></td>
-                                        <td><?php echo $row_donhang['magiaodich']; ?></td>
-                                        <td><?php echo $row_donhang['ngaythang'] ?></td>
-                                        <td><a
-                                                href="?quanly=xemdonhang&khachhang=<?php echo $_SESSION['khachhang_id'] ?>&magiaodich=<?php echo $row_donhang['magiaodich'] ?>">Xem
-                                                chi tiết</a></td>
-                                        <td><?php
+                                        <tr>
+                                            <td><?php echo $i; ?></td>
+                                            <td><?php echo $row_donhang['magiaodich']; ?></td>
+                                            <td><?php echo $row_donhang['ngaythang'] ?></td>
+                                            <td><a href="?quanly=xemdonhang&khachhang=<?php echo $_SESSION['khachhang_id'] ?>&magiaodich=<?php echo $row_donhang['magiaodich'] ?>">Xem
+                                                    chi tiết</a></td>
+                                            <td><?php
                                                 if ($row_donhang['tinhtrangdon'] == 0) {
                                                     echo 'Đã đặt hàng';
                                                 } else {
                                                     echo 'Đã xử lý | Đang giao hàng';
                                                 }
                                                 ?></td>
-                                        <td>
-                                            <?php
+                                            <td>
+                                                <?php
                                                 if ($row_donhang['huydon'] == 0) {
                                                 ?>
-                                            <a
-                                                href="index.php?quanly=xemdonhang&khachhang=<?php echo $_SESSION['khachhang_id'] ?>&magiaodich=<?php echo $row_donhang['magiaodich'] ?>&huydon=1">Yêu
-                                                cầu hủy</a>
-                                            <?php
+                                                    <a href="index.php?quanly=xemdonhang&khachhang=<?php echo $_SESSION['khachhang_id'] ?>&magiaodich=<?php echo $row_donhang['magiaodich'] ?>&huydon=1">Yêu
+                                                        cầu hủy</a>
+                                                <?php
                                                 } elseif ($row_donhang['huydon'] == 1) {
                                                 ?>
-                                            <p>Đang chờ hủy...</p>
-                                            <?php
+                                                    <p>Đang chờ hủy...</p>
+                                                <?php
                                                 } else {
                                                     echo 'Đã hủy';
                                                 }
                                                 ?>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
                                     <?php
                                     }
                                     ?>
@@ -102,17 +112,17 @@
                                         while ($row_donhang = mysqli_fetch_array($sql_select)) {
                                             $i++;
                                         ?>
-                                        <tr>
-                                            <td><?php echo $i; ?></td>
+                                            <tr>
+                                                <td><?php echo $i; ?></td>
 
-                                            <td><?php echo $row_donhang['magiaodich']; ?></td>
+                                                <td><?php echo $row_donhang['magiaodich']; ?></td>
 
-                                            <td><?php echo $row_donhang['sanpham_name']; ?></td>
+                                                <td><?php echo $row_donhang['sanpham_name']; ?></td>
 
-                                            <td><?php echo $row_donhang['soluong']; ?></td>
+                                                <td><?php echo $row_donhang['soluong']; ?></td>
 
-                                            <td><?php echo $row_donhang['ngaythang'] ?></td>
-                                        </tr>
+                                                <td><?php echo $row_donhang['ngaythang'] ?></td>
+                                            </tr>
                                         <?php
                                         }
                                         ?>

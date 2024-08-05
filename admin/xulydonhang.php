@@ -9,6 +9,16 @@ if (isset($_POST['capnhatdonhang'])) {
     $sql_update_donhang = mysqli_query($con, "UPDATE tbl_giaodich SET tinhtrangdon = '$xuly' WHERE magiaodich = '$mahang_tt'");
 }
 
+if (isset($_GET['xacnhanhuy']) && isset($_GET['mahang'])) {
+    $huydon = $_GET['xacnhanhuy'];
+    $magiaodich = $_GET['mahang'];
+} else {
+    $huydon = "";
+    $magiaodich = "";
+}
+$sql_update_donhang = mysqli_query($con, "UPDATE tbl_donhang SET huydon = '$huydon' WHERE mahang = '$magiaodich'");
+$sql_update_giaodich = mysqli_query($con, "UPDATE tbl_giaodich SET huydon = '$huydon' WHERE magiaodich = '$magiaodich'");
+
 ?>
 <?php
 // if (isset($_POST['themdanhmuc'])) {
@@ -45,8 +55,10 @@ if ($xoa == 'delete' && !empty($delete)) {
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"><img style="height: 35px; width: 35px;" src="../images/logoshop.JPG" alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="#"><img style="height: 35px; width: 35px;" src="../images/logoshop.JPG"
+                alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -59,7 +71,8 @@ if ($xoa == 'delete' && !empty($delete)) {
                     <a class="nav-link" href="xulydanhmuc.php">Danh mục</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="xulysanpham.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="xulysanpham.php" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Sản phẩm
                     </a>
                     <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -92,50 +105,51 @@ if ($xoa == 'delete' && !empty($delete)) {
             if ($capnhat == 'xemdonhang' && !empty($mahang)) {
                 $sql_order = mysqli_query($con, "SELECT * FROM tbl_donhang, tbl_sanpham WHERE tbl_donhang.sanpham_id = tbl_sanpham.sanpham_id AND tbl_donhang.mahang = '$mahang'");
             ?>
-                <div class="col-md-7">
-                    <p>xem chi tiết đơn hàng</p>
-                    <form action="" method="POST">
-                        <table class="table table-bordered">
-                            <tr>
-                                <td>Thứ tự</td>
-                                <td>Mã hàng</td>
-                                <td>Tên sản phẩm</td>
-                                <td>Số lương</td>
-                                <td>Giá</td>
-                                <td>Tổng tiền</td>
-                                <td>Ngày đặt</td>
-                                <td>Quản lý</td>
-                            </tr>
-                            <?php
+            <div class="col-md-7">
+                <p>xem chi tiết đơn hàng</p>
+                <form action="" method="POST">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Thứ tự</td>
+                            <td>Mã hàng</td>
+                            <td>Tên sản phẩm</td>
+                            <td>Số lương</td>
+                            <td>Giá</td>
+                            <td>Tổng tiền</td>
+                            <td>Ngày đặt</td>
+                            <td>Quản lý</td>
+                        </tr>
+                        <?php
                             $tt = 0;
                             while ($row_donhang = mysqli_fetch_array($sql_order)) {
                                 $tt++;
                             ?>
-                                <tr>
-                                    <td><?php echo $tt ?></td>
-                                    <td><?php echo $row_donhang['mahang']; ?></td>
-                                    <td><?php echo $row_donhang['sanpham_name']; ?></td>
-                                    <td><?php echo $row_donhang['soluong']; ?></td>
-                                    <td><?php echo $row_donhang['sanpham_gia']; ?></td>
-                                    <td><?php echo number_format($row_donhang['soluong'] * $row_donhang['soluong']); ?></td>
-                                    <td><?php echo $row_donhang['ngaythang']; ?></td>
-                                    <input type="hidden" name="mahang_xuly" value="<?php echo $row_donhang['mahang']; ?>">
-                                    <!-- <td><a class="btn btn-default btn-outline-success" href="?quanly=xoa&id=<?php echo $row_donhang['donhang_id'] ?>">Xóa</a>
+                        <tr>
+                            <td><?php echo $tt ?></td>
+                            <td><?php echo $row_donhang['mahang']; ?></td>
+                            <td><?php echo $row_donhang['sanpham_name']; ?></td>
+                            <td><?php echo $row_donhang['soluong']; ?></td>
+                            <td><?php echo $row_donhang['sanpham_gia']; ?></td>
+                            <td><?php echo number_format($row_donhang['soluong'] * $row_donhang['soluong']); ?></td>
+                            <td><?php echo $row_donhang['ngaythang']; ?></td>
+                            <input type="hidden" name="mahang_xuly" value="<?php echo $row_donhang['mahang']; ?>">
+                            <!-- <td><a class="btn btn-default btn-outline-success" href="?quanly=xoa&id=<?php echo $row_donhang['donhang_id'] ?>">Xóa</a>
                                     || <a class="btn btn-default btn-outline-success" href="?quanly=xemdonhang&mahang=<?php echo $row_donhang['mahang'] ?>">Cập nhật</a></td> -->
-                                </tr>
-                            <?php } ?>
-                        </table>
-                        <select class="form-control" name="xuly">
-                            <option>---Chọn xử lý---</option>
-                            <option value="1">Đã xử lý</option>
-                            <option value="0">Chưa xử lý</option>
-                        </select><br>
-                        <input type="submit" name="capnhatdonhang" value="Cập nhật đơn hàng" class="btn btn-default btn-outline-success">
-                </div>
-                </form>
+                        </tr>
+                        <?php } ?>
+                    </table>
+                    <select class="form-control" name="xuly">
+                        <option>---Chọn xử lý---</option>
+                        <option value="1">Đã xử lý</option>
+                        <option value="0">Chưa xử lý</option>
+                    </select><br>
+                    <input type="submit" name="capnhatdonhang" value="Cập nhật đơn hàng"
+                        class="btn btn-default btn-outline-success">
+            </div>
+            </form>
             <?php } else { ?>
-                <p>đơn hàng</p>
-                <!-- <div class="col-md-4">
+            <p>đơn hàng</p>
+            <!-- <div class="col-md-4">
                     <h4>Thêm danh mục</h4>
                     <label for="">Tên danh mục</label>
                     <form action="" method="POST">
@@ -157,6 +171,7 @@ if ($xoa == 'delete' && !empty($delete)) {
                         <td>Tình trạng</td>
                         <td>Tên khách hàng</td>
                         <td>Ngày đặt</td>
+                        <td>Hủy đơn</td>
                         <td>Quản lý</td>
                     </tr>
                     <?php
@@ -164,24 +179,33 @@ if ($xoa == 'delete' && !empty($delete)) {
                     while ($row_donhang = mysqli_fetch_array($sql_donhang)) {
                         $tt++;
                     ?>
-                        <tr>
-                            <td><?php echo $tt ?></td>
-                            <td><?php echo $row_donhang['mahang']; ?></td>
-                            <td>
-                                <?php
+                    <tr>
+                        <td><?php echo $tt ?></td>
+                        <td><?php echo $row_donhang['mahang']; ?></td>
+                        <td>
+                            <?php
                                 if ($row_donhang['tinhtrang'] == 0) {
                                     echo "Chưa xử lý";
                                 } else {
                                     echo "Đã xử lý";
                                 }
                                 ?>
-                            </td>
-                            <td><?php echo $row_donhang['name']; ?></td>
-                            <td><?php echo $row_donhang['ngaythang']; ?></td>
-                            <td><a class="btn btn-default btn-outline-success" href="?quanly=delete&id=<?php echo $row_donhang['donhang_id'] ?>">Xóa</a>
-                                || <a class="btn btn-default btn-outline-success" href="?quanly=xemdonhang&mahang=<?php echo $row_donhang['mahang'] ?>">Xem chi tiết</a>
-                            </td>
-                        </tr>
+                        </td>
+                        <td><?php echo $row_donhang['name']; ?></td>
+                        <td><?php echo $row_donhang['ngaythang']; ?></td>
+                        <td><?php if ($row_donhang['huydon'] == 0) {
+                                } elseif ($row_donhang['huydon'] == 1) {
+                                    echo '<a href="?quanly=xemdonhang&mahang=' . $row_donhang['mahang'] . '&xacnhanhuy=2">Xác nhận hủy đơn</a>';
+                                } else {
+                                    echo "Đã hủy";
+                                }
+                                ?></td>
+                        <td><a class="btn btn-default btn-outline-success"
+                                href="?quanly=delete&id=<?php echo $row_donhang['donhang_id'] ?>">Xóa</a>
+                            || <a class="btn btn-default btn-outline-success"
+                                href="?quanly=xemdonhang&mahang=<?php echo $row_donhang['mahang'] ?>">Xem chi tiết</a>
+                        </td>
+                    </tr>
                     <?php } ?>
                 </table>
             </div>
